@@ -1,0 +1,1819 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "office",
+   "name": "İş Yeri, İletişim & Ofis",
+   "icon": "🏢"
+  },
+  {
+   "id": "ai",
+   "name": "Yapay Zeka & Asistanlar",
+   "icon": "🤖"
+  },
+  {
+   "id": "security",
+   "name": "Siber Güvenlik & Ağ",
+   "icon": "🛡️"
+  },
+  {
+   "id": "dev",
+   "name": "Kodlama & Geliştirici",
+   "icon": "💻"
+  },
+  {
+   "id": "devops",
+   "name": "DevOps, Bulut & Uzak Erişim",
+   "icon": "☁️"
+  },
+  {
+   "id": "design_media",
+   "name": "Tasarım & Medya",
+   "icon": "🎨"
+  },
+  {
+   "id": "hardware",
+   "name": "Donanım & Sistem Bilgisi",
+   "icon": "⚡"
+  },
+  {
+   "id": "elec",
+   "name": "Elektrik, Elektronik & IoT",
+   "icon": "🔌"
+  },
+  {
+   "id": "mech",
+   "name": "Makine, Üretim & CAD",
+   "icon": "🔧"
+  },
+  {
+   "id": "civil",
+   "name": "İnşaat, Harita & Çevre",
+   "icon": "🏗️"
+  },
+  {
+   "id": "chembio",
+   "name": "Kimya, Biyo & Tıp",
+   "icon": "🧪"
+  },
+  {
+   "id": "aero",
+   "name": "Uzay & Havacılık",
+   "icon": "🛰️"
+  },
+  {
+   "id": "science",
+   "name": "Matematik & Bilimsel Hesap",
+   "icon": "📐"
+  },
+  {
+   "id": "productivity",
+   "name": "Verimlilik & Sistem",
+   "icon": "🚀"
+  }
+ ],
+ "programs": [
+  {
+   "id": "teams",
+   "name": "Microsoft Teams",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.teams",
+   "desc": "Toplantı, sohbet ve ekip çalışması",
+   "default": true
+  },
+  {
+   "id": "outlook",
+   "name": "Microsoft Outlook",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.office.outlook",
+   "desc": "E-posta ve takvim",
+   "default": true
+  },
+  {
+   "id": "m365",
+   "name": "Microsoft 365 (Office)",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.office.officehubrow",
+   "desc": "Word, Excel, PowerPoint ve PDF tek uygulamada",
+   "default": true
+  },
+  {
+   "id": "word",
+   "name": "Microsoft Word",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.office.word",
+   "desc": "Belge düzenleyici",
+   "default": false
+  },
+  {
+   "id": "excel",
+   "name": "Microsoft Excel",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.office.excel",
+   "desc": "Hesap tablosu",
+   "default": false
+  },
+  {
+   "id": "powerpoint",
+   "name": "Microsoft PowerPoint",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.office.powerpoint",
+   "desc": "Sunum",
+   "default": false
+  },
+  {
+   "id": "onedrive",
+   "name": "OneDrive",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.microsoft.skydrive",
+   "desc": "Microsoft bulut depolama",
+   "default": false
+  },
+  {
+   "id": "ms_auth",
+   "name": "Microsoft Authenticator",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.azure.authenticator",
+   "desc": "İş hesapları için iki adımlı doğrulama",
+   "default": true
+  },
+  {
+   "id": "slack",
+   "name": "Slack",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.Slack",
+   "desc": "Ekip mesajlaşma",
+   "default": false
+  },
+  {
+   "id": "zoom",
+   "name": "Zoom",
+   "category": "office",
+   "source": "play",
+   "pkg": "us.zoom.videomeetings",
+   "desc": "Görüntülü toplantı",
+   "default": true
+  },
+  {
+   "id": "webex",
+   "name": "Webex",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.cisco.webex.meetings",
+   "desc": "Cisco görüntülü toplantı",
+   "default": false
+  },
+  {
+   "id": "meet",
+   "name": "Google Meet",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.google.android.apps.tachyon",
+   "desc": "Google görüntülü görüşme",
+   "default": false
+  },
+  {
+   "id": "gmail",
+   "name": "Gmail",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.google.android.gm",
+   "desc": "Google e-posta",
+   "default": false
+  },
+  {
+   "id": "gdrive",
+   "name": "Google Drive",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.google.android.apps.docs",
+   "desc": "Google bulut depolama",
+   "default": true
+  },
+  {
+   "id": "gdocs",
+   "name": "Google Dokümanlar",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.google.android.apps.docs.editors.docs",
+   "desc": "Google belge düzenleyici",
+   "default": false
+  },
+  {
+   "id": "gsheets",
+   "name": "Google E-Tablolar",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.google.android.apps.docs.editors.sheets",
+   "desc": "Google hesap tablosu",
+   "default": false
+  },
+  {
+   "id": "whatsapp",
+   "name": "WhatsApp",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.whatsapp",
+   "desc": "Mesajlaşma",
+   "default": true
+  },
+  {
+   "id": "whatsapp_biz",
+   "name": "WhatsApp Business",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.whatsapp.w4b",
+   "desc": "İşletmeler için WhatsApp",
+   "default": false
+  },
+  {
+   "id": "telegram",
+   "name": "Telegram",
+   "category": "office",
+   "source": "play",
+   "pkg": "org.telegram.messenger",
+   "desc": "Mesajlaşma ve kanallar",
+   "default": false
+  },
+  {
+   "id": "signal",
+   "name": "Signal",
+   "category": "office",
+   "source": "play",
+   "pkg": "org.thoughtcrime.securesms",
+   "desc": "Uçtan uca şifreli mesajlaşma",
+   "default": false
+  },
+  {
+   "id": "discord",
+   "name": "Discord",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.discord",
+   "desc": "Topluluk sohbeti ve sesli kanallar",
+   "default": false
+  },
+  {
+   "id": "linkedin",
+   "name": "LinkedIn",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.linkedin.android",
+   "desc": "Profesyonel ağ ve iş ilanları",
+   "default": true
+  },
+  {
+   "id": "notion",
+   "name": "Notion",
+   "category": "office",
+   "source": "play",
+   "pkg": "notion.id",
+   "desc": "Notlar, wiki ve proje yönetimi",
+   "default": false
+  },
+  {
+   "id": "trello",
+   "name": "Trello",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.trello",
+   "desc": "Kanban panoları",
+   "default": false
+  },
+  {
+   "id": "asana",
+   "name": "Asana",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.asana.app",
+   "desc": "Proje ve görev yönetimi",
+   "default": false
+  },
+  {
+   "id": "jira",
+   "name": "Jira Cloud",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.atlassian.android.jira.core",
+   "desc": "Atlassian iş takibi",
+   "default": false
+  },
+  {
+   "id": "acrobat",
+   "name": "Adobe Acrobat Reader",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.adobe.reader",
+   "desc": "PDF okuma, imzalama ve not",
+   "default": true
+  },
+  {
+   "id": "adobe_scan",
+   "name": "Adobe Scan",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.adobe.scan.android",
+   "desc": "Belge tarayıcı (OCR)",
+   "default": false
+  },
+  {
+   "id": "dropbox",
+   "name": "Dropbox",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.dropbox.android",
+   "desc": "Bulut depolama",
+   "default": false
+  },
+  {
+   "id": "collabora",
+   "name": "Collabora Office",
+   "category": "office",
+   "source": "play",
+   "pkg": "com.collabora.libreoffice",
+   "desc": "LibreOffice tabanlı açık kaynak ofis",
+   "default": false
+  },
+  {
+   "id": "nextcloud",
+   "name": "Nextcloud",
+   "category": "office",
+   "source": "fdroid",
+   "pkg": "com.nextcloud.client",
+   "desc": "Kendi sunucunda bulut depolama",
+   "default": false
+  },
+  {
+   "id": "thunderbird",
+   "name": "Thunderbird",
+   "category": "office",
+   "source": "fdroid",
+   "pkg": "net.thunderbird.android",
+   "desc": "Açık kaynak e-posta istemcisi",
+   "default": false
+  },
+  {
+   "id": "element",
+   "name": "Element",
+   "category": "office",
+   "source": "fdroid",
+   "pkg": "im.vector.app",
+   "desc": "Matrix tabanlı şifreli ekip sohbeti",
+   "default": false
+  },
+  {
+   "id": "chatgpt",
+   "name": "ChatGPT",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.openai.chatgpt",
+   "desc": "OpenAI asistanı",
+   "default": true
+  },
+  {
+   "id": "claude",
+   "name": "Claude",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.anthropic.claude",
+   "desc": "Anthropic asistanı",
+   "default": true
+  },
+  {
+   "id": "gemini",
+   "name": "Google Gemini",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.google.android.apps.bard",
+   "desc": "Google asistanı",
+   "default": true
+  },
+  {
+   "id": "copilot",
+   "name": "Microsoft Copilot",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.microsoft.copilot",
+   "desc": "Microsoft asistanı",
+   "default": false
+  },
+  {
+   "id": "perplexity",
+   "name": "Perplexity",
+   "category": "ai",
+   "source": "play",
+   "pkg": "ai.perplexity.app.android",
+   "desc": "Kaynak gösteren yapay zeka araması",
+   "default": true
+  },
+  {
+   "id": "deepseek",
+   "name": "DeepSeek",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.deepseek.chat",
+   "desc": "DeepSeek asistanı",
+   "default": false
+  },
+  {
+   "id": "grok",
+   "name": "Grok",
+   "category": "ai",
+   "source": "play",
+   "pkg": "ai.x.grok",
+   "desc": "xAI asistanı",
+   "default": false
+  },
+  {
+   "id": "lechat",
+   "name": "Le Chat (Mistral)",
+   "category": "ai",
+   "source": "play",
+   "pkg": "ai.mistral.chat",
+   "desc": "Mistral asistanı",
+   "default": false
+  },
+  {
+   "id": "notebooklm",
+   "name": "NotebookLM",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.google.android.apps.labs.language.tailwind",
+   "desc": "Belgelerinden özet ve sesli özet çıkarır",
+   "default": false
+  },
+  {
+   "id": "edge_gallery",
+   "name": "Google AI Edge Gallery",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.google.ai.edge.gallery",
+   "desc": "Gemma gibi modelleri telefonda çevrimdışı çalıştırır",
+   "default": false
+  },
+  {
+   "id": "pocketpal",
+   "name": "PocketPal AI",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.pocketpalai",
+   "desc": "GGUF modelleri cihazda çalıştıran yerel LLM",
+   "default": false
+  },
+  {
+   "id": "lens",
+   "name": "Google Lens",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.google.ar.lens",
+   "desc": "Görselden arama, çeviri ve metin çıkarma",
+   "default": false
+  },
+  {
+   "id": "otter",
+   "name": "Otter.ai",
+   "category": "ai",
+   "source": "play",
+   "pkg": "com.aisense.otter",
+   "desc": "Toplantı kaydı ve yapay zeka ile not",
+   "default": false
+  },
+  {
+   "id": "netguard",
+   "name": "NetGuard",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "eu.faircode.netguard",
+   "desc": "Root gerektirmeyen uygulama bazlı güvenlik duvarı",
+   "default": true
+  },
+  {
+   "id": "pcapdroid",
+   "name": "PCAPdroid",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "com.emanuelef.remote_capture",
+   "desc": "Root'suz ağ trafiği yakalama ve PCAP dışa aktarma",
+   "default": true
+  },
+  {
+   "id": "wifianalyzer",
+   "name": "WiFiAnalyzer",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "com.vrem.wifianalyzer",
+   "desc": "Wi-Fi kanal ve sinyal analizi",
+   "default": true
+  },
+  {
+   "id": "fing",
+   "name": "Fing",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.overlook.android.fing",
+   "desc": "Ağ tarayıcı, cihaz keşfi ve port taraması",
+   "default": true
+  },
+  {
+   "id": "netanalyzer",
+   "name": "Network Analyzer",
+   "category": "security",
+   "source": "play",
+   "pkg": "net.techet.netanalyzerlite.an",
+   "desc": "Ping, traceroute, DNS, port tarama",
+   "default": false
+  },
+  {
+   "id": "orbot",
+   "name": "Orbot",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "org.torproject.android",
+   "desc": "Tor ağı üzerinden trafik",
+   "default": false
+  },
+  {
+   "id": "torbrowser",
+   "name": "Tor Browser",
+   "category": "security",
+   "source": "play",
+   "pkg": "org.torproject.torbrowser",
+   "desc": "Anonim tarayıcı",
+   "default": false
+  },
+  {
+   "id": "rethink",
+   "name": "Rethink DNS + Firewall",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "com.celzero.bravedns",
+   "desc": "Şifreli DNS ve güvenlik duvarı",
+   "default": false
+  },
+  {
+   "id": "wireguard",
+   "name": "WireGuard",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "com.wireguard.android",
+   "desc": "Hızlı modern VPN",
+   "default": true
+  },
+  {
+   "id": "openvpn",
+   "name": "OpenVPN for Android",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "de.blinkt.openvpn",
+   "desc": "Açık kaynak OpenVPN istemcisi",
+   "default": false
+  },
+  {
+   "id": "protonvpn",
+   "name": "Proton VPN",
+   "category": "security",
+   "source": "play",
+   "pkg": "ch.protonvpn.android",
+   "desc": "Ücretsiz katmanı olan gizlilik VPN'i",
+   "default": false
+  },
+  {
+   "id": "bitwarden",
+   "name": "Bitwarden",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.x8bit.bitwarden",
+   "desc": "Açık kaynak parola yöneticisi",
+   "default": true
+  },
+  {
+   "id": "keepassdx",
+   "name": "KeePassDX",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "com.kunzisoft.keepass.libre",
+   "desc": "KeePass uyumlu çevrimdışı parola kasası",
+   "default": false
+  },
+  {
+   "id": "aegis",
+   "name": "Aegis Authenticator",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "com.beemdevelopment.aegis",
+   "desc": "Açık kaynak 2FA kod üretici",
+   "default": true
+  },
+  {
+   "id": "exodus",
+   "name": "Exodus Privacy",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "org.eu.exodus_privacy.exodusandroid",
+   "desc": "Uygulamalardaki izleyicileri ve izinleri listeler",
+   "default": false
+  },
+  {
+   "id": "shelter",
+   "name": "Shelter",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "net.typeblog.shelter",
+   "desc": "İş profili ile uygulamaları izole et",
+   "default": false
+  },
+  {
+   "id": "hackerskb",
+   "name": "Hacker's Keyboard",
+   "category": "security",
+   "source": "fdroid",
+   "pkg": "org.pocketworkstation.pckeyboard",
+   "desc": "Ctrl/Esc/Tab tuşlu tam klavye (terminal için)",
+   "default": false
+  },
+  {
+   "id": "termux",
+   "name": "Termux",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "com.termux",
+   "desc": "Linux terminali: python, git, ssh, nmap, gcc ve binlerce paket",
+   "default": true
+  },
+  {
+   "id": "termux_api",
+   "name": "Termux:API",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "com.termux.api",
+   "desc": "Termux'a kamera, sensör, bildirim erişimi",
+   "default": false
+  },
+  {
+   "id": "acode",
+   "name": "Acode",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "com.foxdebug.acode",
+   "desc": "Güçlü kod editörü (HTML, JS, Python...)",
+   "default": true
+  },
+  {
+   "id": "squircle",
+   "name": "Squircle CE",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "com.blacksquircle.ui",
+   "desc": "Hafif açık kaynak kod editörü",
+   "default": false
+  },
+  {
+   "id": "markor",
+   "name": "Markor",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "net.gsantner.markor",
+   "desc": "Markdown ve düz metin editörü",
+   "default": false
+  },
+  {
+   "id": "mgit",
+   "name": "MGit",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "com.manichord.mgit",
+   "desc": "Git istemcisi: klonla, commit et, push et",
+   "default": false
+  },
+  {
+   "id": "github",
+   "name": "GitHub",
+   "category": "dev",
+   "source": "play",
+   "pkg": "com.github.android",
+   "desc": "Repolar, PR'lar, issue'lar ve bildirimler",
+   "default": true
+  },
+  {
+   "id": "pydroid",
+   "name": "Pydroid 3",
+   "category": "dev",
+   "source": "play",
+   "pkg": "ru.iiec.pydroid3",
+   "desc": "Python 3 IDE (numpy, matplotlib destekli)",
+   "default": true
+  },
+  {
+   "id": "cxxdroid",
+   "name": "Cxxdroid",
+   "category": "dev",
+   "source": "play",
+   "pkg": "ru.iiec.cxxdroid",
+   "desc": "C/C++ IDE ve derleyici",
+   "default": false
+  },
+  {
+   "id": "dcoder",
+   "name": "Dcoder",
+   "category": "dev",
+   "source": "play",
+   "pkg": "com.paprbit.dcoder",
+   "desc": "50+ dilde derleyici",
+   "default": false
+  },
+  {
+   "id": "spck",
+   "name": "Spck Editor",
+   "category": "dev",
+   "source": "play",
+   "pkg": "io.spck",
+   "desc": "Web geliştirme editörü ve önizleme",
+   "default": false
+  },
+  {
+   "id": "http_shortcuts",
+   "name": "HTTP Shortcuts",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "ch.rmy.android.http_shortcuts",
+   "desc": "API isteklerini tek dokunuşla gönder",
+   "default": false
+  },
+  {
+   "id": "sololearn",
+   "name": "Sololearn",
+   "category": "dev",
+   "source": "play",
+   "pkg": "com.sololearn",
+   "desc": "Kodlama dersleri",
+   "default": false
+  },
+  {
+   "id": "mimo",
+   "name": "Mimo",
+   "category": "dev",
+   "source": "play",
+   "pkg": "com.getmimo",
+   "desc": "Adım adım kodlama öğren",
+   "default": false
+  },
+  {
+   "id": "connectbot",
+   "name": "ConnectBot",
+   "category": "devops",
+   "source": "fdroid",
+   "pkg": "org.connectbot",
+   "desc": "Açık kaynak SSH istemcisi",
+   "default": true
+  },
+  {
+   "id": "termius",
+   "name": "Termius",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.server.auditor.ssh.client",
+   "desc": "SSH ve SFTP istemcisi",
+   "default": true
+  },
+  {
+   "id": "juicessh",
+   "name": "JuiceSSH",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.sonelli.juicessh",
+   "desc": "SSH, Mosh ve Telnet",
+   "default": false
+  },
+  {
+   "id": "tailscale",
+   "name": "Tailscale",
+   "category": "devops",
+   "source": "fdroid",
+   "pkg": "com.tailscale.ipn",
+   "desc": "Cihazlarını özel ağda birleştir",
+   "default": true
+  },
+  {
+   "id": "rustdesk",
+   "name": "RustDesk",
+   "category": "devops",
+   "source": "fdroid",
+   "pkg": "com.carriez.flutter_hbb",
+   "desc": "Açık kaynak uzak masaüstü",
+   "default": false
+  },
+  {
+   "id": "anydesk",
+   "name": "AnyDesk",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.anydesk.anydeskandroid",
+   "desc": "Uzak masaüstü",
+   "default": false
+  },
+  {
+   "id": "teamviewer",
+   "name": "TeamViewer",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.teamviewer.teamviewer.market.mobile",
+   "desc": "Uzak masaüstü",
+   "default": false
+  },
+  {
+   "id": "windows_app",
+   "name": "Windows App (Uzak Masaüstü)",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.microsoft.rdc.androidx",
+   "desc": "RDP ile Windows'a bağlan",
+   "default": true
+  },
+  {
+   "id": "aws",
+   "name": "AWS Console",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.amazon.aws.console.mobile",
+   "desc": "Amazon Web Services yönetimi",
+   "default": false
+  },
+  {
+   "id": "azure",
+   "name": "Microsoft Azure",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.microsoft.azure",
+   "desc": "Azure kaynak yönetimi",
+   "default": false
+  },
+  {
+   "id": "gcloud",
+   "name": "Google Cloud",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.google.android.apps.cloudconsole",
+   "desc": "Google Cloud konsolu",
+   "default": false
+  },
+  {
+   "id": "warp",
+   "name": "Cloudflare 1.1.1.1",
+   "category": "devops",
+   "source": "play",
+   "pkg": "com.cloudflare.onedotonedotonedotone",
+   "desc": "Hızlı DNS ve WARP",
+   "default": false
+  },
+  {
+   "id": "syncthing",
+   "name": "Syncthing-Fork",
+   "category": "devops",
+   "source": "fdroid",
+   "pkg": "com.github.catfriend1.syncthingandroid",
+   "desc": "Sunucusuz dosya senkronizasyonu",
+   "default": false
+  },
+  {
+   "id": "homeassistant",
+   "name": "Home Assistant",
+   "category": "devops",
+   "source": "play",
+   "pkg": "io.homeassistant.companion.android",
+   "desc": "Ev otomasyonu kontrolü",
+   "default": false
+  },
+  {
+   "id": "canva",
+   "name": "Canva",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.canva.editor",
+   "desc": "Grafik tasarım ve sunum",
+   "default": true
+  },
+  {
+   "id": "figma",
+   "name": "Figma",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.figma.mirror",
+   "desc": "Figma tasarımlarını telefonda görüntüle",
+   "default": false
+  },
+  {
+   "id": "lightroom",
+   "name": "Adobe Lightroom",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.adobe.lrmobile",
+   "desc": "Fotoğraf düzenleme",
+   "default": false
+  },
+  {
+   "id": "ps_express",
+   "name": "Photoshop Express",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.adobe.psmobile",
+   "desc": "Hızlı fotoğraf düzenleme",
+   "default": false
+  },
+  {
+   "id": "adobe_express",
+   "name": "Adobe Express",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.adobe.spark.post",
+   "desc": "Sosyal medya tasarımları",
+   "default": false
+  },
+  {
+   "id": "snapseed",
+   "name": "Snapseed",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.niksoftware.snapseed",
+   "desc": "Google fotoğraf düzenleyici",
+   "default": true
+  },
+  {
+   "id": "capcut",
+   "name": "CapCut",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.lemon.lvoverseas",
+   "desc": "Video düzenleme",
+   "default": true
+  },
+  {
+   "id": "krita",
+   "name": "Krita",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "org.krita",
+   "desc": "Açık kaynak dijital çizim",
+   "default": false
+  },
+  {
+   "id": "ibis",
+   "name": "ibis Paint X",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "jp.ne.ibis.ibispaintx.app",
+   "desc": "Çizim ve illüstrasyon",
+   "default": false
+  },
+  {
+   "id": "infinite_painter",
+   "name": "Infinite Painter",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.brakefield.painter",
+   "desc": "Profesyonel dijital boyama",
+   "default": false
+  },
+  {
+   "id": "nomad",
+   "name": "Nomad Sculpt",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.stephaneginier.nomad",
+   "desc": "3D heykel ve modelleme",
+   "default": false
+  },
+  {
+   "id": "polycam",
+   "name": "Polycam",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "ai.polycam",
+   "desc": "Telefonla 3D tarama",
+   "default": false
+  },
+  {
+   "id": "bandlab",
+   "name": "BandLab",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.bandlab.bandlab",
+   "desc": "Müzik kaydı ve düzenleme",
+   "default": false
+  },
+  {
+   "id": "vlc",
+   "name": "VLC",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "org.videolan.vlc",
+   "desc": "Her formatı oynatan medya oynatıcı",
+   "default": true
+  },
+  {
+   "id": "opencamera",
+   "name": "Open Camera",
+   "category": "design_media",
+   "source": "fdroid",
+   "pkg": "net.sourceforge.opencamera",
+   "desc": "Manuel kontrollü açık kaynak kamera",
+   "default": false
+  },
+  {
+   "id": "fossify_gallery",
+   "name": "Fossify Gallery",
+   "category": "design_media",
+   "source": "fdroid",
+   "pkg": "org.fossify.gallery",
+   "desc": "Reklamsız galeri",
+   "default": false
+  },
+  {
+   "id": "newpipe",
+   "name": "NewPipe",
+   "category": "design_media",
+   "source": "fdroid",
+   "pkg": "org.schabi.newpipe",
+   "desc": "Hafif YouTube istemcisi",
+   "default": false
+  },
+  {
+   "id": "pinterest",
+   "name": "Pinterest",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.pinterest",
+   "desc": "İlham panoları",
+   "default": false
+  },
+  {
+   "id": "devcheck",
+   "name": "DevCheck",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "flar2.devcheck",
+   "desc": "İşlemci, GPU, pil ve sensör bilgisi",
+   "default": true
+  },
+  {
+   "id": "cpuz",
+   "name": "CPU-Z",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "com.cpuid.cpu_z",
+   "desc": "Donanım bilgisi",
+   "default": false
+  },
+  {
+   "id": "aida64",
+   "name": "AIDA64",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "com.finalwire.aida64",
+   "desc": "Ayrıntılı sistem bilgisi",
+   "default": false
+  },
+  {
+   "id": "accubattery",
+   "name": "AccuBattery",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "com.digibites.accubattery",
+   "desc": "Pil sağlığı ve şarj ölçümü",
+   "default": false
+  },
+  {
+   "id": "raspcontroller",
+   "name": "RaspController",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "it.Ettore.raspcontroller",
+   "desc": "Raspberry Pi'yi telefondan yönet",
+   "default": true
+  },
+  {
+   "id": "nrfconnect",
+   "name": "nRF Connect",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "no.nordicsemi.android.mcp",
+   "desc": "Bluetooth LE tarama ve hata ayıklama",
+   "default": true
+  },
+  {
+   "id": "nrftoolbox",
+   "name": "nRF Toolbox",
+   "category": "hardware",
+   "source": "play",
+   "pkg": "no.nordicsemi.android.nrftoolbox",
+   "desc": "BLE profilleri ve UART",
+   "default": false
+  },
+  {
+   "id": "electrodroid",
+   "name": "ElectroDroid",
+   "category": "elec",
+   "source": "play",
+   "pkg": "it.android.demi.elettronica",
+   "desc": "Elektronik hesaplayıcılar ve pin dizilimleri",
+   "default": true
+  },
+  {
+   "id": "everycircuit",
+   "name": "EveryCircuit",
+   "category": "elec",
+   "source": "play",
+   "pkg": "com.everycircuit.free",
+   "desc": "Animasyonlu devre simülatörü",
+   "default": true
+  },
+  {
+   "id": "serial_usb",
+   "name": "Serial USB Terminal",
+   "category": "elec",
+   "source": "play",
+   "pkg": "de.kai_morich.serial_usb_terminal",
+   "desc": "USB seri port terminali (Arduino, ESP32)",
+   "default": true
+  },
+  {
+   "id": "serial_bt",
+   "name": "Serial Bluetooth Terminal",
+   "category": "elec",
+   "source": "play",
+   "pkg": "de.kai_morich.serial_bluetooth_terminal",
+   "desc": "Bluetooth seri terminal (HC-05, ESP32)",
+   "default": true
+  },
+  {
+   "id": "arduinodroid",
+   "name": "ArduinoDroid",
+   "category": "elec",
+   "source": "play",
+   "pkg": "name.antonsmirnov.android.arduinodroid2",
+   "desc": "Telefondan Arduino kodu derle ve yükle",
+   "default": false
+  },
+  {
+   "id": "blynk",
+   "name": "Blynk IoT",
+   "category": "elec",
+   "source": "play",
+   "pkg": "cc.blynk",
+   "desc": "IoT cihaz panelleri",
+   "default": false
+  },
+  {
+   "id": "mqttdash",
+   "name": "MQTT Dash",
+   "category": "elec",
+   "source": "play",
+   "pkg": "net.routix.mqttdash",
+   "desc": "MQTT panosu",
+   "default": false
+  },
+  {
+   "id": "autocad",
+   "name": "AutoCAD",
+   "category": "mech",
+   "source": "play",
+   "pkg": "com.autodesk.autocadws",
+   "desc": "DWG görüntüleme ve düzenleme",
+   "default": true
+  },
+  {
+   "id": "onshape",
+   "name": "Onshape",
+   "category": "mech",
+   "source": "play",
+   "pkg": "com.onshape.app",
+   "desc": "Bulut tabanlı CAD",
+   "default": true
+  },
+  {
+   "id": "bambu",
+   "name": "Bambu Handy",
+   "category": "mech",
+   "source": "play",
+   "pkg": "bbl.intl.bambulab.com",
+   "desc": "Bambu Lab 3D yazıcı kontrolü",
+   "default": false
+  },
+  {
+   "id": "unitto",
+   "name": "Unitto",
+   "category": "mech",
+   "source": "fdroid",
+   "pkg": "com.sadellie.unitto",
+   "desc": "Birim çevirici ve hesap makinesi",
+   "default": true
+  },
+  {
+   "id": "gearth",
+   "name": "Google Earth",
+   "category": "civil",
+   "source": "play",
+   "pkg": "com.google.earth",
+   "desc": "3D dünya ve KML görüntüleme",
+   "default": true
+  },
+  {
+   "id": "gmaps",
+   "name": "Google Haritalar",
+   "category": "civil",
+   "source": "play",
+   "pkg": "com.google.android.apps.maps",
+   "desc": "Harita ve navigasyon",
+   "default": false
+  },
+  {
+   "id": "organicmaps",
+   "name": "Organic Maps",
+   "category": "civil",
+   "source": "fdroid",
+   "pkg": "app.organicmaps",
+   "desc": "Çevrimdışı OSM haritaları",
+   "default": true
+  },
+  {
+   "id": "osmand",
+   "name": "OsmAnd~",
+   "category": "civil",
+   "source": "fdroid",
+   "pkg": "net.osmand.plus",
+   "desc": "Çevrimdışı harita, iz kaydı ve eşyükselti",
+   "default": false
+  },
+  {
+   "id": "qfield",
+   "name": "QField",
+   "category": "civil",
+   "source": "play",
+   "pkg": "ch.opengis.qfield",
+   "desc": "QGIS projeleriyle sahada veri toplama",
+   "default": true
+  },
+  {
+   "id": "fieldmaps",
+   "name": "ArcGIS Field Maps",
+   "category": "civil",
+   "source": "play",
+   "pkg": "com.esri.fieldmaps",
+   "desc": "Esri sahada harita ve veri toplama",
+   "default": false
+  },
+  {
+   "id": "swmaps",
+   "name": "SW Maps",
+   "category": "civil",
+   "source": "play",
+   "pkg": "np.com.softwel.swmaps",
+   "desc": "GIS veri toplama ve GNSS",
+   "default": false
+  },
+  {
+   "id": "gpstest",
+   "name": "GPSTest",
+   "category": "civil",
+   "source": "fdroid",
+   "pkg": "com.android.gpstest.osmdroid",
+   "desc": "GNSS uydu ve sinyal durumu",
+   "default": true
+  },
+  {
+   "id": "windy",
+   "name": "Windy",
+   "category": "civil",
+   "source": "play",
+   "pkg": "com.windyty.android",
+   "desc": "Rüzgar, yağış ve hava modelleri",
+   "default": false
+  },
+  {
+   "id": "medscape",
+   "name": "Medscape",
+   "category": "chembio",
+   "source": "play",
+   "pkg": "com.medscape.android",
+   "desc": "İlaç, etkileşim ve klinik başvuru",
+   "default": true
+  },
+  {
+   "id": "merck_pte",
+   "name": "Merck Periyodik Tablo",
+   "category": "chembio",
+   "source": "play",
+   "pkg": "com.merck.pte",
+   "desc": "Periyodik tablo ve element verileri",
+   "default": true
+  },
+  {
+   "id": "flightradar",
+   "name": "Flightradar24",
+   "category": "aero",
+   "source": "play",
+   "pkg": "com.flightradar24free",
+   "desc": "Canlı uçuş takibi",
+   "default": true
+  },
+  {
+   "id": "stellarium",
+   "name": "Stellarium Mobile",
+   "category": "aero",
+   "source": "play",
+   "pkg": "com.noctuasoftware.stellarium_free",
+   "desc": "Gökyüzü haritası",
+   "default": true
+  },
+  {
+   "id": "skymap",
+   "name": "Sky Map",
+   "category": "aero",
+   "source": "fdroid",
+   "pkg": "com.google.android.stardroid",
+   "desc": "Açık kaynak gökyüzü haritası",
+   "default": false
+  },
+  {
+   "id": "nasa",
+   "name": "NASA",
+   "category": "aero",
+   "source": "play",
+   "pkg": "gov.nasa",
+   "desc": "NASA görevleri, görüntüler ve canlı yayın",
+   "default": false
+  },
+  {
+   "id": "issdetector",
+   "name": "ISS Detector",
+   "category": "aero",
+   "source": "play",
+   "pkg": "com.runar.issdetector",
+   "desc": "ISS ve uydu geçiş bildirimleri",
+   "default": false
+  },
+  {
+   "id": "geogebra",
+   "name": "GeoGebra Hesap Makinesi Paketi",
+   "category": "science",
+   "source": "play",
+   "pkg": "org.geogebra.android.calculator.suite",
+   "desc": "Grafik, geometri, 3D ve CAS",
+   "default": true
+  },
+  {
+   "id": "desmos",
+   "name": "Desmos",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.desmos.calculator",
+   "desc": "Grafik hesap makinesi",
+   "default": true
+  },
+  {
+   "id": "wolfram",
+   "name": "WolframAlpha",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.wolfram.android.alpha",
+   "desc": "Hesaplamalı bilgi motoru",
+   "default": false
+  },
+  {
+   "id": "photomath",
+   "name": "Photomath",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.microblink.photomath",
+   "desc": "Fotoğraftan adım adım çözüm",
+   "default": false
+  },
+  {
+   "id": "symbolab",
+   "name": "Symbolab",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.devsense.symbolab",
+   "desc": "Adım adım matematik çözücü",
+   "default": false
+  },
+  {
+   "id": "msmath",
+   "name": "Microsoft Math Solver",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.microsoft.math",
+   "desc": "Matematik çözücü",
+   "default": false
+  },
+  {
+   "id": "calcpp",
+   "name": "Calculator++",
+   "category": "science",
+   "source": "play",
+   "pkg": "org.solovyev.android.calculator",
+   "desc": "Bilimsel ve programcı hesap makinesi",
+   "default": false
+  },
+  {
+   "id": "octave",
+   "name": "Octave",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.octave",
+   "desc": "GNU Octave (MATLAB uyumlu)",
+   "default": false
+  },
+  {
+   "id": "phyphox",
+   "name": "phyphox",
+   "category": "science",
+   "source": "fdroid",
+   "pkg": "de.rwth_aachen.phyphox",
+   "desc": "Telefon sensörleriyle fizik deneyleri",
+   "default": true
+  },
+  {
+   "id": "physics_toolbox",
+   "name": "Physics Toolbox Sensor Suite",
+   "category": "science",
+   "source": "play",
+   "pkg": "com.chrystianvieyra.physicstoolboxsuite",
+   "desc": "Sensör kaydedici ve osiloskop",
+   "default": false
+  },
+  {
+   "id": "fdroid",
+   "name": "F-Droid",
+   "category": "productivity",
+   "source": "fdroid",
+   "pkg": "org.fdroid.fdroid",
+   "desc": "Açık kaynak uygulama mağazası",
+   "default": true
+  },
+  {
+   "id": "obsidian",
+   "name": "Obsidian",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "md.obsidian",
+   "desc": "Markdown not ve bilgi tabanı",
+   "default": true
+  },
+  {
+   "id": "joplin",
+   "name": "Joplin",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "net.cozic.joplin",
+   "desc": "Açık kaynak not ve yapılacaklar",
+   "default": false
+  },
+  {
+   "id": "todoist",
+   "name": "Todoist",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.todoist",
+   "desc": "Görev yöneticisi",
+   "default": false
+  },
+  {
+   "id": "mstodo",
+   "name": "Microsoft To Do",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.microsoft.todos",
+   "desc": "Görev listesi",
+   "default": false
+  },
+  {
+   "id": "keep",
+   "name": "Google Keep",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.keep",
+   "desc": "Hızlı notlar",
+   "default": false
+  },
+  {
+   "id": "anki",
+   "name": "AnkiDroid",
+   "category": "productivity",
+   "source": "fdroid",
+   "pkg": "com.ichi2.anki",
+   "desc": "Aralıklı tekrar kartları",
+   "default": false
+  },
+  {
+   "id": "material_files",
+   "name": "Material Files",
+   "category": "productivity",
+   "source": "fdroid",
+   "pkg": "me.zhanghai.android.files",
+   "desc": "SMB, SFTP, FTP destekli dosya yöneticisi",
+   "default": true
+  },
+  {
+   "id": "gfiles",
+   "name": "Files by Google",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.apps.nbu.files",
+   "desc": "Dosya yönetimi ve temizlik",
+   "default": false
+  },
+  {
+   "id": "kdeconnect",
+   "name": "KDE Connect",
+   "category": "productivity",
+   "source": "fdroid",
+   "pkg": "org.kde.kdeconnect_tp",
+   "desc": "Telefon ve bilgisayarı birleştir",
+   "default": true
+  },
+  {
+   "id": "localsend",
+   "name": "LocalSend",
+   "category": "productivity",
+   "source": "fdroid",
+   "pkg": "org.localsend.localsend_app",
+   "desc": "Yerel ağda internetsiz dosya gönder",
+   "default": true
+  },
+  {
+   "id": "firefox",
+   "name": "Firefox",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "org.mozilla.firefox",
+   "desc": "Tarayıcı (eklenti destekli)",
+   "default": false
+  },
+  {
+   "id": "brave",
+   "name": "Brave",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.brave.browser",
+   "desc": "Reklam engelleyen tarayıcı",
+   "default": false
+  },
+  {
+   "id": "translate",
+   "name": "Google Çeviri",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.apps.translate",
+   "desc": "Çevrimdışı çeviri ve kamera çevirisi",
+   "default": false
+  },
+  {
+   "id": "heliboard",
+   "name": "HeliBoard",
+   "category": "productivity",
+   "source": "fdroid",
+   "pkg": "helium314.keyboard",
+   "desc": "Gizlilik dostu klavye",
+   "default": false
+  },
+  {
+   "id": "shizuku",
+   "name": "Shizuku",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "moe.shizuku.privileged.api",
+   "desc": "Root'suz ileri sistem izinleri",
+   "default": false
+  },
+  {
+   "id": "forest",
+   "name": "Forest",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "cc.forestapp",
+   "desc": "Odaklanma zamanlayıcısı",
+   "default": false
+  }
+ ],
+ "presets": [
+  {
+   "id": "starter",
+   "name": "✨ Temel Paket",
+   "desc": "Her telefonda olması gerekenler",
+   "ids": [
+    "fdroid",
+    "chatgpt",
+    "claude",
+    "whatsapp",
+    "gdrive",
+    "acrobat",
+    "bitwarden",
+    "aegis",
+    "localsend",
+    "material_files",
+    "vlc",
+    "translate"
+   ]
+  },
+  {
+   "id": "work",
+   "name": "🏢 İş Yeri Paketi",
+   "desc": "Teams, Outlook, Office, Zoom, LinkedIn, PDF ve 2FA",
+   "ids": [
+    "teams",
+    "outlook",
+    "m365",
+    "ms_auth",
+    "zoom",
+    "gdrive",
+    "whatsapp",
+    "linkedin",
+    "acrobat"
+   ]
+  },
+  {
+   "id": "ai",
+   "name": "🤖 Yapay Zeka",
+   "desc": "ChatGPT, Claude, Gemini, Perplexity ve cihazda çalışan modeller",
+   "ids": [
+    "chatgpt",
+    "claude",
+    "gemini",
+    "perplexity",
+    "edge_gallery",
+    "pocketpal",
+    "notebooklm"
+   ]
+  },
+  {
+   "id": "security",
+   "name": "🛡️ Siber Güvenlik & Ağ",
+   "desc": "Termux, ağ tarama, trafik yakalama, VPN ve parola kasası",
+   "ids": [
+    "netguard",
+    "pcapdroid",
+    "wifianalyzer",
+    "fing",
+    "wireguard",
+    "bitwarden",
+    "aegis",
+    "termux",
+    "hackerskb",
+    "orbot",
+    "connectbot"
+   ]
+  },
+  {
+   "id": "software",
+   "name": "💻 Yazılım Geliştirici",
+   "desc": "Termux, Acode, GitHub, Pydroid, SSH ve senkron",
+   "ids": [
+    "termux",
+    "acode",
+    "github",
+    "pydroid",
+    "termius",
+    "tailscale",
+    "mgit",
+    "markor",
+    "material_files"
+   ]
+  },
+  {
+   "id": "devops",
+   "name": "☁️ DevOps & Bulut",
+   "desc": "SSH, Tailscale, RDP, AWS/Azure/GCP konsolları",
+   "ids": [
+    "connectbot",
+    "termius",
+    "tailscale",
+    "windows_app",
+    "aws",
+    "azure",
+    "gcloud",
+    "termux"
+   ]
+  },
+  {
+   "id": "hardware",
+   "name": "⚡ Donanım & Gömülü",
+   "desc": "Seri terminaller, BLE, Raspberry Pi, devre hesapları",
+   "ids": [
+    "devcheck",
+    "raspcontroller",
+    "nrfconnect",
+    "electrodroid",
+    "everycircuit",
+    "serial_usb",
+    "serial_bt",
+    "termux",
+    "blynk",
+    "mqttdash"
+   ]
+  },
+  {
+   "id": "design",
+   "name": "🎨 Tasarım & Medya",
+   "desc": "Canva, Snapseed, CapCut, 3D tarama ve çizim",
+   "ids": [
+    "canva",
+    "snapseed",
+    "capcut",
+    "vlc",
+    "krita",
+    "polycam",
+    "nomad",
+    "figma"
+   ]
+  },
+  {
+   "id": "mech",
+   "name": "🔧 Makine Mühendisi",
+   "desc": "AutoCAD, Onshape, birim çevirici, 3D yazıcı",
+   "ids": [
+    "autocad",
+    "onshape",
+    "unitto",
+    "geogebra",
+    "desmos",
+    "phyphox",
+    "bambu",
+    "polycam"
+   ]
+  },
+  {
+   "id": "elec",
+   "name": "🔌 Elektrik-Elektronik",
+   "desc": "ElectroDroid, EveryCircuit, seri terminal, Arduino",
+   "ids": [
+    "electrodroid",
+    "everycircuit",
+    "serial_usb",
+    "serial_bt",
+    "arduinodroid",
+    "nrfconnect",
+    "physics_toolbox"
+   ]
+  },
+  {
+   "id": "civil",
+   "name": "🏗️ İnşaat & Harita",
+   "desc": "QField, Google Earth, çevrimdışı harita, GNSS",
+   "ids": [
+    "gearth",
+    "organicmaps",
+    "qfield",
+    "gpstest",
+    "autocad",
+    "fieldmaps",
+    "swmaps",
+    "osmand"
+   ]
+  },
+  {
+   "id": "chembio",
+   "name": "🧪 Kimya & Biyo & Tıp",
+   "desc": "Medscape, periyodik tablo, bilimsel hesap",
+   "ids": [
+    "medscape",
+    "merck_pte",
+    "wolfram",
+    "geogebra"
+   ]
+  },
+  {
+   "id": "aero",
+   "name": "🛰️ Uzay & Havacılık",
+   "desc": "Flightradar24, Stellarium, NASA, ISS takibi",
+   "ids": [
+    "flightradar",
+    "stellarium",
+    "nasa",
+    "issdetector",
+    "windy"
+   ]
+  },
+  {
+   "id": "science",
+   "name": "📐 Matematik & Bilim",
+   "desc": "GeoGebra, Desmos, WolframAlpha, phyphox, Octave",
+   "ids": [
+    "geogebra",
+    "desmos",
+    "phyphox",
+    "wolfram",
+    "octave",
+    "physics_toolbox"
+   ]
+  }
+ ]
+}

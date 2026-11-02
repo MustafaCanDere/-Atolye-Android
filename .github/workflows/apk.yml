@@ -1,0 +1,67 @@
+name: APK derle
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Katalog testleri
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Paket kimliklerini doğrula (F-Droid / Play)
+        continue-on-error: true
+        run: python3 scripts/check_packages.py
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: İmza anahtarını hazırla
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "KEYSTORE_PATH=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          fi
+
+      - name: APK derle
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: gradle --no-daemon assembleRelease
+
+      - name: APK'yı adlandır
+        run: cp app/build/outputs/apk/release/app-release.apk "Atolye-1.0.${{ github.run_number }}.apk"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Atolye-apk
+          path: Atolye-*.apk
+
+      - name: Sürüm yayınla
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Atölye 1.0.${{ github.run_number }}
+          body: |
+            Telefonuna indirip kur. Android "bilinmeyen kaynak" izni isteyebilir.
+            F-Droid uygulamaları doğrudan indirilip kurulur, diğerleri Play Store sayfasından tek dokunuşla kurulur.
+          files: Atolye-*.apk
+          make_latest: true

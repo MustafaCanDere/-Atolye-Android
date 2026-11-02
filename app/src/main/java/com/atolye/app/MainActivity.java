@@ -1,0 +1,214 @@
+package com.atolye.app;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import androidx.webkit.WebViewAssetLoader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * Arayuz assets/index.html icinde (WebView). Kurulum motoru Java tarafinda:
+ * F-Droid'den APK indirip PackageInstaller ile kurar, Play Store sayfasini acar,
+ * hangi paketlerin kurulu oldugunu soyler. Olaylar JS'e window.__native(...) ile gider.
+ */
+public class MainActivity extends Activity implements FdroidInstaller.Listener {
+    private static final String START_URL = "https://appassets.androidplatform.net/assets/index.html";
+
+    private WebView web;
+    private FdroidInstaller installer;
+
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        final WebViewAssetLoader loader = new WebViewAssetLoader.Builder()
+                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .build();
+
+        installer = new FdroidInstaller(this, this);
+
+        web = new WebView(this);
+        setContentView(web);
+
+        WebSettings s = web.getSettings();
+        s.setJavaScriptEnabled(true);
+        s.setDomStorageEnabled(true);
+        s.setAllowFileAccess(false);
+        s.setAllowContentAccess(false);
+
+        web.addJavascriptInterface(new Bridge(), "Atolye");
+        web.setWebViewClient(new WebViewClient() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                return loader.shouldInterceptRequest(request.getUrl());
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Uri u = request.getUrl();
+                if ("appassets.androidplatform.net".equals(u.getHost())) return false;
+                openExternal(u);
+                return true;
+            }
+        });
+
+        if (savedInstanceState != null) web.restoreState(savedInstanceState);
+        else web.loadUrl(START_URL);
+    }
+
+    private boolean openExternal(Uri u) {
+        try {
+            Intent i = new Intent(Intent.ACTION_VIEW, u);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            return true;
+        } catch (ActivityNotFoundException e) {
+            return false;
+        }
+    }
+
+    private boolean isInstalled(String pkg) {
+        try {
+            PackageManager pm = getPackageManager();
+            if (Build.VERSION.SDK_INT >= 33) pm.getPackageInfo(pkg, PackageManager.PackageInfoFlags.of(0));
+            else pm.getPackageInfo(pkg, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    /** JS'in cagirdigi yontemler. Hepsi kisa surer; uzun isler FdroidInstaller'da arka planda. */
+    private class Bridge {
+        @JavascriptInterface
+        public String installed(String pkgsJson) {
+            JSONArray out = new JSONArray();
+            try {
+                JSONArray in = new JSONArray(pkgsJson);
+                for (int i = 0; i < in.length(); i++) {
+                    String p = in.optString(i);
+                    if (isInstalled(p)) out.put(p);
+                }
+            } catch (JSONException ignored) { }
+            return out.toString();
+        }
+
+        @JavascriptInterface
+        public boolean openStore(String pkg) {
+            if (openExternal(Uri.parse("market://details?id=" + pkg))) return true;
+            return openExternal(Uri.parse("https://play.google.com/store/apps/details?id=" + pkg));
+        }
+
+        @JavascriptInterface
+        public boolean openUrl(String url) {
+            return openExternal(Uri.parse(url));
+        }
+
+        @JavascriptInterface
+        public boolean openApp(String pkg) {
+            Intent i = getPackageManager().getLaunchIntentForPackage(pkg);
+            if (i == null) return false;
+            startActivity(i);
+            return true;
+        }
+
+        @JavascriptInterface
+        public boolean canInstall() {
+            return getPackageManager().canRequestPackageInstalls();
+        }
+
+        @JavascriptInterface
+        public void requestInstallPermission() {
+            runOnUiThread(() -> {
+                try {
+                    startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                            Uri.parse("package:" + getPackageName())));
+                } catch (ActivityNotFoundException ignored) { }
+            });
+        }
+
+        @JavascriptInterface
+        public void installFdroid(String pkg) {
+            installer.install(pkg);
+        }
+
+        @JavascriptInterface
+        public void cancel() {
+            installer.cancel();
+        }
+
+        @JavascriptInterface
+        public String deviceInfo() {
+            JSONObject o = new JSONObject();
+            try {
+                o.put("sdk", Build.VERSION.SDK_INT);
+                o.put("release", Build.VERSION.RELEASE);
+                o.put("model", Build.MANUFACTURER + " " + Build.MODEL);
+                o.put("abis", new JSONArray(Build.SUPPORTED_ABIS));
+            } catch (JSONException ignored) { }
+            return o.toString();
+        }
+    }
+
+    // ---- FdroidInstaller.Listener: olaylari JS'e ilet ----
+    @Override
+    public void onEvent(JSONObject event) {
+        final String js = "window.__native && window.__native(" + event.toString() + ")";
+        runOnUiThread(() -> web.evaluateJavascript(js, null));
+    }
+
+    @Override
+    public void launchUserAction(Intent confirm) {
+        runOnUiThread(() -> {
+            try {
+                confirm.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(confirm);
+            } catch (ActivityNotFoundException e) {
+                installer.failCurrent("Kurulum ekranı açılamadı");
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (web != null) web.evaluateJavascript("window.__resume && window.__resume()", null);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void onBackPressed() {
+        web.evaluateJavascript("(window.__back && window.__back()) ? 1 : 0", value -> {
+            if (!"1".equals(value)) MainActivity.super.onBackPressed();
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        web.saveState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        installer.release();
+        super.onDestroy();
+    }
+}
