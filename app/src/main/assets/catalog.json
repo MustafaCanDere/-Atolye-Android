@@ -168,7 +168,7 @@
    "name": "Webex",
    "category": "office",
    "source": "play",
-   "pkg": "com.cisco.webex.meetings",
+   "pkg": "com.cisco.wx2.android",
    "desc": "Cisco görüntülü toplantı",
    "default": false
   },
@@ -398,15 +398,6 @@
    "default": true
   },
   {
-   "id": "copilot",
-   "name": "Microsoft Copilot",
-   "category": "ai",
-   "source": "play",
-   "pkg": "com.microsoft.copilot",
-   "desc": "Microsoft asistanı",
-   "default": false
-  },
-  {
    "id": "perplexity",
    "name": "Perplexity",
    "category": "ai",
@@ -536,7 +527,7 @@
    "id": "orbot",
    "name": "Orbot",
    "category": "security",
-   "source": "fdroid",
+   "source": "play",
    "pkg": "org.torproject.android",
    "desc": "Tor ağı üzerinden trafik",
    "default": false
@@ -563,7 +554,7 @@
    "id": "wireguard",
    "name": "WireGuard",
    "category": "security",
-   "source": "fdroid",
+   "source": "play",
    "pkg": "com.wireguard.android",
    "desc": "Hızlı modern VPN",
    "default": true
@@ -612,15 +603,6 @@
    "pkg": "com.beemdevelopment.aegis",
    "desc": "Açık kaynak 2FA kod üretici",
    "default": true
-  },
-  {
-   "id": "exodus",
-   "name": "Exodus Privacy",
-   "category": "security",
-   "source": "fdroid",
-   "pkg": "org.eu.exodus_privacy.exodusandroid",
-   "desc": "Uygulamalardaki izleyicileri ve izinleri listeler",
-   "default": false
   },
   {
    "id": "shelter",
@@ -722,15 +704,6 @@
    "default": false
   },
   {
-   "id": "dcoder",
-   "name": "Dcoder",
-   "category": "dev",
-   "source": "play",
-   "pkg": "com.paprbit.dcoder",
-   "desc": "50+ dilde derleyici",
-   "default": false
-  },
-  {
    "id": "spck",
    "name": "Spck Editor",
    "category": "dev",
@@ -783,15 +756,6 @@
    "pkg": "com.server.auditor.ssh.client",
    "desc": "SSH ve SFTP istemcisi",
    "default": true
-  },
-  {
-   "id": "juicessh",
-   "name": "JuiceSSH",
-   "category": "devops",
-   "source": "play",
-   "pkg": "com.sonelli.juicessh",
-   "desc": "SSH, Mosh ve Telnet",
-   "default": false
   },
   {
    "id": "tailscale",
@@ -878,7 +842,7 @@
    "id": "syncthing",
    "name": "Syncthing-Fork",
    "category": "devops",
-   "source": "fdroid",
+   "source": "play",
    "pkg": "com.github.catfriend1.syncthingandroid",
    "desc": "Sunucusuz dosya senkronizasyonu",
    "default": false
@@ -1167,7 +1131,7 @@
    "name": "Blynk IoT",
    "category": "elec",
    "source": "play",
-   "pkg": "cc.blynk",
+   "pkg": "cloud.blynk",
    "desc": "IoT cihaz panelleri",
    "default": false
   },
@@ -1307,15 +1271,6 @@
    "default": true
   },
   {
-   "id": "merck_pte",
-   "name": "Merck Periyodik Tablo",
-   "category": "chembio",
-   "source": "play",
-   "pkg": "com.merck.pte",
-   "desc": "Periyodik tablo ve element verileri",
-   "default": true
-  },
-  {
    "id": "flightradar",
    "name": "Flightradar24",
    "category": "aero",
@@ -1406,30 +1361,12 @@
    "default": false
   },
   {
-   "id": "msmath",
-   "name": "Microsoft Math Solver",
-   "category": "science",
-   "source": "play",
-   "pkg": "com.microsoft.math",
-   "desc": "Matematik çözücü",
-   "default": false
-  },
-  {
    "id": "calcpp",
    "name": "Calculator++",
    "category": "science",
    "source": "play",
    "pkg": "org.solovyev.android.calculator",
    "desc": "Bilimsel ve programcı hesap makinesi",
-   "default": false
-  },
-  {
-   "id": "octave",
-   "name": "Octave",
-   "category": "science",
-   "source": "play",
-   "pkg": "com.octave",
-   "desc": "GNU Octave (MATLAB uyumlu)",
    "default": false
   },
   {
@@ -1785,7 +1722,6 @@
    "desc": "Medscape, periyodik tablo, bilimsel hesap",
    "ids": [
     "medscape",
-    "merck_pte",
     "wolfram",
     "geogebra"
    ]
@@ -1811,7 +1747,6 @@
     "desmos",
     "phyphox",
     "wolfram",
-    "octave",
     "physics_toolbox"
    ]
   }
