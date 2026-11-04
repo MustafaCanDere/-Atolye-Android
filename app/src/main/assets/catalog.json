@@ -1631,24 +1631,6 @@
    "default": false
   },
   {
-   "id": "ms_lens",
-   "name": "Microsoft Lens",
-   "category": "office",
-   "source": "play",
-   "pkg": "com.microsoft.office.officelens",
-   "desc": "Belge ve beyaz tahta tarayıcı",
-   "default": false
-  },
-  {
-   "id": "clickup",
-   "name": "ClickUp",
-   "category": "office",
-   "source": "play",
-   "pkg": "co.mangotango.android.clickup",
-   "desc": "Proje ve görev yönetimi",
-   "default": false
-  },
-  {
    "id": "monday",
    "name": "monday.com",
    "category": "office",
@@ -1721,15 +1703,6 @@
    "default": false
   },
   {
-   "id": "huggingchat",
-   "name": "HuggingChat",
-   "category": "ai",
-   "source": "play",
-   "pkg": "com.huggingface.chat",
-   "desc": "Açık modellerle sohbet",
-   "default": false
-  },
-  {
    "id": "meta_ai",
    "name": "Meta AI",
    "category": "ai",
@@ -1772,15 +1745,6 @@
    "source": "play",
    "pkg": "com.microsoft.seeingai",
    "desc": "Görme engelliler için görsel anlatıcı",
-   "default": false
-  },
-  {
-   "id": "chatterui",
-   "name": "ChatterUI",
-   "category": "ai",
-   "source": "fdroid",
-   "pkg": "com.Vali98.ChatterUI",
-   "desc": "Yerel ve uzak LLM arayüzü",
    "default": false
   },
   {
@@ -1919,15 +1883,6 @@
    "default": false
   },
   {
-   "id": "gitlab_glab",
-   "name": "GitLab",
-   "category": "dev",
-   "source": "play",
-   "pkg": "com.gitlab.mobile",
-   "desc": "GitLab istemcisi",
-   "default": false
-  },
-  {
    "id": "jvdroid",
    "name": "Jvdroid",
    "category": "dev",
@@ -1973,48 +1928,12 @@
    "default": false
   },
   {
-   "id": "leetcode",
-   "name": "LeetCode",
-   "category": "dev",
-   "source": "play",
-   "pkg": "com.leetcode.leetcode",
-   "desc": "Algoritma soruları",
-   "default": false
-  },
-  {
-   "id": "w3schools",
-   "name": "W3Schools",
-   "category": "dev",
-   "source": "play",
-   "pkg": "com.w3schools.app",
-   "desc": "Web geliştirme dersleri",
-   "default": false
-  },
-  {
    "id": "fossify_notes",
    "name": "Fossify Notes",
    "category": "productivity",
    "source": "fdroid",
    "pkg": "org.fossify.notes",
    "desc": "Basit notlar",
-   "default": false
-  },
-  {
-   "id": "digitalocean",
-   "name": "DigitalOcean",
-   "category": "devops",
-   "source": "play",
-   "pkg": "com.digitalocean.app",
-   "desc": "DigitalOcean yönetimi",
-   "default": false
-  },
-  {
-   "id": "oracle_cloud",
-   "name": "Oracle Cloud",
-   "category": "devops",
-   "source": "play",
-   "pkg": "com.oracle.oci.mobile",
-   "desc": "OCI yönetimi",
    "default": false
   },
   {
@@ -2153,15 +2072,6 @@
    "default": false
   },
   {
-   "id": "coolors",
-   "name": "Coolors",
-   "category": "design_media",
-   "source": "play",
-   "pkg": "co.coolors.android",
-   "desc": "Renk paleti oluşturucu",
-   "default": false
-  },
-  {
    "id": "pixel_studio",
    "name": "Pixel Studio",
    "category": "design_media",
@@ -2234,15 +2144,6 @@
    "default": false
   },
   {
-   "id": "geekbench",
-   "name": "Geekbench 6",
-   "category": "hardware",
-   "source": "play",
-   "pkg": "com.primatelabs.geekbench6",
-   "desc": "İşlemci ve GPU testi",
-   "default": false
-  },
-  {
    "id": "3dmark",
    "name": "3DMark",
    "category": "hardware",
@@ -2258,15 +2159,6 @@
    "source": "play",
    "pkg": "com.kgurgul.cpuinfo",
    "desc": "Donanım bilgisi",
-   "default": false
-  },
-  {
-   "id": "cpu_info_fd",
-   "name": "CPU Info (açık kaynak)",
-   "category": "hardware",
-   "source": "fdroid",
-   "pkg": "com.kgurgul.cpuinfo.fdroid",
-   "desc": "Açık kaynak donanım bilgisi",
    "default": false
   },
   {
@@ -2333,66 +2225,12 @@
    "default": false
   },
   {
-   "id": "electrical_calc",
-   "name": "Electrical Calculations",
-   "category": "elec",
-   "source": "play",
-   "pkg": "com.ettore.electricalcalculations",
-   "desc": "Elektrik tesisatı hesapları",
-   "default": false
-  },
-  {
-   "id": "electronics_calc",
-   "name": "Electronic Toolkit",
-   "category": "elec",
-   "source": "play",
-   "pkg": "com.tsuryo.electronictoolkit",
-   "desc": "Direnç, kondansatör, LED hesapları",
-   "default": false
-  },
-  {
-   "id": "resistor_code",
-   "name": "Resistor Color Code",
-   "category": "elec",
-   "source": "play",
-   "pkg": "com.connectedsensor.resistorcolorcode",
-   "desc": "Direnç renk kodu",
-   "default": false
-  },
-  {
-   "id": "oscilloscope",
-   "name": "Oscilloscope",
-   "category": "elec",
-   "source": "play",
-   "pkg": "com.nfx.oscilloscope",
-   "desc": "Ses girişinden osiloskop",
-   "default": false
-  },
-  {
    "id": "shelly",
    "name": "Shelly Smart Control",
    "category": "elec",
    "source": "play",
    "pkg": "cloud.shelly.smartcontrol",
    "desc": "Shelly akıllı röle kontrolü",
-   "default": false
-  },
-  {
-   "id": "cnc_calc",
-   "name": "Machinist Calculator",
-   "category": "mech",
-   "source": "play",
-   "pkg": "com.machinistcalc.fullversion",
-   "desc": "CNC ve talaşlı imalat hesapları",
-   "default": false
-  },
-  {
-   "id": "mech_eng",
-   "name": "Mechanical Engineering",
-   "category": "mech",
-   "source": "play",
-   "pkg": "com.vaultrex.mechanicalengineering",
-   "desc": "Makine formülleri",
    "default": false
   },
   {
@@ -2405,30 +2243,12 @@
    "default": false
   },
   {
-   "id": "prusa_app",
-   "name": "Prusa",
-   "category": "mech",
-   "source": "play",
-   "pkg": "com.prusa3d.prusaconnect",
-   "desc": "Prusa yazıcı kontrolü",
-   "default": false
-  },
-  {
    "id": "octoapp",
    "name": "OctoApp",
    "category": "mech",
    "source": "play",
    "pkg": "de.crysxd.octoapp",
    "desc": "OctoPrint ve Klipper kontrolü",
-   "default": false
-  },
-  {
-   "id": "printables",
-   "name": "Printables",
-   "category": "mech",
-   "source": "play",
-   "pkg": "com.prusa3d.printables",
-   "desc": "3D model kütüphanesi",
    "default": false
   },
   {
@@ -2513,15 +2333,6 @@
    "default": false
   },
   {
-   "id": "concrete_calc",
-   "name": "Concrete Calculator",
-   "category": "civil",
-   "source": "play",
-   "pkg": "com.civilengineering.concretecalculator",
-   "desc": "Beton hesapları",
-   "default": false
-  },
-  {
    "id": "airvisual",
    "name": "IQAir AirVisual",
    "category": "civil",
@@ -2531,66 +2342,12 @@
    "default": false
   },
   {
-   "id": "earthquake",
-   "name": "AFAD Acil",
-   "category": "civil",
-   "source": "play",
-   "pkg": "tr.gov.afad.acil",
-   "desc": "AFAD deprem ve acil durum",
-   "default": true
-  },
-  {
    "id": "drugs_com",
    "name": "Drugs.com",
    "category": "chembio",
    "source": "play",
    "pkg": "com.drugscom.app",
    "desc": "İlaç bilgisi ve etkileşim",
-   "default": false
-  },
-  {
-   "id": "complete_anatomy",
-   "name": "Complete Anatomy",
-   "category": "chembio",
-   "source": "play",
-   "pkg": "com.threed4medical.completeanatomy",
-   "desc": "3D anatomi",
-   "default": false
-  },
-  {
-   "id": "pubchem_mol",
-   "name": "Molecular Constructor",
-   "category": "chembio",
-   "source": "play",
-   "pkg": "com.molcon.molcon",
-   "desc": "Molekül modelleme",
-   "default": false
-  },
-  {
-   "id": "periodic_table",
-   "name": "Periodic Table",
-   "category": "chembio",
-   "source": "play",
-   "pkg": "com.socratica.mobile.chemistry",
-   "desc": "Periyodik tablo",
-   "default": false
-  },
-  {
-   "id": "chemist",
-   "name": "Chemist - Virtual Lab",
-   "category": "chembio",
-   "source": "play",
-   "pkg": "com.thixlab.chemist",
-   "desc": "Sanal kimya laboratuvarı",
-   "default": false
-  },
-  {
-   "id": "labcalc",
-   "name": "Tıbbi Hesaplayıcılar",
-   "category": "chembio",
-   "source": "play",
-   "pkg": "com.medicalcalculators.calculatormanager",
-   "desc": "Tıbbi hesaplayıcılar (MDCalc)",
    "default": false
   },
   {
@@ -2627,69 +2384,6 @@
    "source": "play",
    "pkg": "com.flightaware.android.liveFlightTracker",
    "desc": "Uçuş takibi",
-   "default": false
-  },
-  {
-   "id": "skysafari",
-   "name": "SkySafari",
-   "category": "aero",
-   "source": "play",
-   "pkg": "com.simulationcurriculum.skysafari7basic",
-   "desc": "Gökyüzü ve uydular",
-   "default": false
-  },
-  {
-   "id": "satellite_tracker",
-   "name": "Satellite Tracker",
-   "category": "aero",
-   "source": "play",
-   "pkg": "com.brainparksoftware.satellitetracker",
-   "desc": "Uydu takibi",
-   "default": false
-  },
-  {
-   "id": "spaceflight_now",
-   "name": "Next Spaceflight",
-   "category": "aero",
-   "source": "play",
-   "pkg": "com.nextspaceflight",
-   "desc": "Roket fırlatma takvimi",
-   "default": false
-  },
-  {
-   "id": "metar",
-   "name": "Aviation Weather",
-   "category": "aero",
-   "source": "play",
-   "pkg": "com.aviationweather.app",
-   "desc": "METAR ve TAF",
-   "default": false
-  },
-  {
-   "id": "xcsoar",
-   "name": "XCSoar",
-   "category": "aero",
-   "source": "play",
-   "pkg": "org.xcsoar",
-   "desc": "Planör uçuş bilgisayarı",
-   "default": false
-  },
-  {
-   "id": "drone_dji",
-   "name": "DJI Fly",
-   "category": "aero",
-   "source": "play",
-   "pkg": "dji.go.v5",
-   "desc": "DJI drone kontrolü",
-   "default": false
-  },
-  {
-   "id": "uav_forecast",
-   "name": "UAV Forecast",
-   "category": "aero",
-   "source": "play",
-   "pkg": "com.uavforecast.app",
-   "desc": "Drone uçuş hava durumu",
    "default": false
   },
   {
@@ -2744,15 +2438,6 @@
    "source": "play",
    "pkg": "com.mathworks.matlabmobile",
    "desc": "MATLAB Online bağlantısı",
-   "default": false
-  },
-  {
-   "id": "jupyter",
-   "name": "Jupyter Notebook",
-   "category": "science",
-   "source": "play",
-   "pkg": "com.jupyter.notebook",
-   "desc": "Jupyter defterleri",
    "default": false
   },
   {
@@ -2909,15 +2594,6 @@
    "default": false
   },
   {
-   "id": "eba",
-   "name": "EBA",
-   "category": "learn",
-   "source": "play",
-   "pkg": "tr.gov.eba.hd",
-   "desc": "MEB eğitim platformu",
-   "default": false
-  },
-  {
    "id": "turkiye_edevlet",
    "name": "e-Devlet",
    "category": "learn",
@@ -2960,15 +2636,6 @@
    "source": "fdroid",
    "pkg": "org.tasks",
    "desc": "Açık kaynak görev yöneticisi",
-   "default": false
-  },
-  {
-   "id": "logseq",
-   "name": "Logseq",
-   "category": "productivity",
-   "source": "play",
-   "pkg": "com.logseq.app",
-   "desc": "Bağlantılı not alma",
    "default": false
   },
   {
@@ -3107,15 +2774,6 @@
    "default": false
   },
   {
-   "id": "enpara",
-   "name": "Enpara.com",
-   "category": "finance",
-   "source": "play",
-   "pkg": "finansbank.enpara",
-   "desc": "Enpara",
-   "default": false
-  },
-  {
    "id": "qnb",
    "name": "QNB Mobil",
    "category": "finance",
@@ -3206,15 +2864,6 @@
    "default": false
   },
   {
-   "id": "btcturk",
-   "name": "BtcTurk",
-   "category": "finance",
-   "source": "play",
-   "pkg": "com.btcturk",
-   "desc": "Kripto borsası",
-   "default": false
-  },
-  {
    "id": "money_manager",
    "name": "Money Manager",
    "category": "finance",
@@ -3227,7 +2876,7 @@
    "id": "ivy_wallet",
    "name": "Ivy Wallet",
    "category": "finance",
-   "source": "fdroid",
+   "source": "play",
    "pkg": "com.ivy.wallet",
    "desc": "Açık kaynak bütçe",
    "default": false
@@ -3302,15 +2951,6 @@
    "source": "play",
    "pkg": "com.urbandroid.sleep",
    "desc": "Uyku döngüsü alarmı",
-   "default": false
-  },
-  {
-   "id": "water",
-   "name": "Water Reminder",
-   "category": "health",
-   "source": "play",
-   "pkg": "waterreminder.drinkwater.reminder.tracker.waterdrink",
-   "desc": "Su içme hatırlatıcı",
    "default": false
   },
   {
@@ -3692,15 +3332,6 @@
    "default": false
   },
   {
-   "id": "eksi",
-   "name": "Ekşi Sözlük",
-   "category": "social",
-   "source": "play",
-   "pkg": "com.ekisozluk.android",
-   "desc": "Ekşi Sözlük",
-   "default": false
-  },
-  {
    "id": "google_news",
    "name": "Google Haberler",
    "category": "news",
@@ -3989,12 +3620,516 @@
    "default": false
   },
   {
-   "id": "ir_remote",
-   "name": "Universal TV Remote",
-   "category": "home",
+   "id": "gphotos",
+   "name": "Google Fotoğraflar",
+   "category": "design_media",
    "source": "play",
-   "pkg": "com.remotefairy4",
-   "desc": "Kızılötesi kumanda",
+   "pkg": "com.google.android.apps.photos",
+   "desc": "Fotoğraf yedekleme",
+   "default": false
+  },
+  {
+   "id": "soundcloud",
+   "name": "SoundCloud",
+   "category": "fun",
+   "source": "play",
+   "pkg": "com.soundcloud.android",
+   "desc": "Müzik ve podcast",
+   "default": false
+  },
+  {
+   "id": "deezer",
+   "name": "Deezer",
+   "category": "fun",
+   "source": "play",
+   "pkg": "deezer.android.app",
+   "desc": "Müzik",
+   "default": false
+  },
+  {
+   "id": "pocketcasts",
+   "name": "Pocket Casts",
+   "category": "news",
+   "source": "play",
+   "pkg": "au.com.shiftyjelly.pocketcasts",
+   "desc": "Podcast",
+   "default": false
+  },
+  {
+   "id": "audible",
+   "name": "Audible",
+   "category": "news",
+   "source": "play",
+   "pkg": "com.audible.application",
+   "desc": "Sesli kitap",
+   "default": false
+  },
+  {
+   "id": "crunchyroll",
+   "name": "Crunchyroll",
+   "category": "fun",
+   "source": "play",
+   "pkg": "com.crunchyroll.crunchyroid",
+   "desc": "Anime",
+   "default": false
+  },
+  {
+   "id": "plex",
+   "name": "Plex",
+   "category": "fun",
+   "source": "play",
+   "pkg": "com.plexapp.android",
+   "desc": "Medya sunucusu",
+   "default": false
+  },
+  {
+   "id": "jellyfin",
+   "name": "Jellyfin",
+   "category": "fun",
+   "source": "fdroid",
+   "pkg": "org.jellyfin.mobile",
+   "desc": "Açık kaynak medya sunucusu",
+   "default": false
+  },
+  {
+   "id": "kodi",
+   "name": "Kodi",
+   "category": "fun",
+   "source": "play",
+   "pkg": "org.xbmc.kodi",
+   "desc": "Medya merkezi",
+   "default": false
+  },
+  {
+   "id": "behance",
+   "name": "Behance",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.behance.behance",
+   "desc": "Tasarım portfolyoları",
+   "default": false
+  },
+  {
+   "id": "unsplash",
+   "name": "Unsplash",
+   "category": "design_media",
+   "source": "play",
+   "pkg": "com.unsplash.android",
+   "desc": "Ücretsiz yüksek çözünürlüklü fotoğraflar",
+   "default": false
+  },
+  {
+   "id": "tumblr",
+   "name": "Tumblr",
+   "category": "social",
+   "source": "play",
+   "pkg": "com.tumblr",
+   "desc": "Blog ve topluluk",
+   "default": false
+  },
+  {
+   "id": "quora",
+   "name": "Quora",
+   "category": "social",
+   "source": "play",
+   "pkg": "com.quora.android",
+   "desc": "Soru-cevap",
+   "default": false
+  },
+  {
+   "id": "linkedin_learning",
+   "name": "LinkedIn Learning",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.linkedin.android.learning",
+   "desc": "Profesyonel kurslar",
+   "default": false
+  },
+  {
+   "id": "google_search",
+   "name": "Google Arama",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.google.android.googlequicksearchbox",
+   "desc": "Google arama ve Discover",
+   "default": false
+  },
+  {
+   "id": "google_books",
+   "name": "Google Play Kitaplar",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.google.android.apps.books",
+   "desc": "E-kitap ve sesli kitap",
+   "default": false
+  },
+  {
+   "id": "socratic",
+   "name": "Socratic by Google",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.google.socratic",
+   "desc": "Ödev yardımı",
+   "default": false
+  },
+  {
+   "id": "babbel",
+   "name": "Babbel",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.babbel.mobile.android.en",
+   "desc": "Dil öğrenme",
+   "default": false
+  },
+  {
+   "id": "hellotalk",
+   "name": "HelloTalk",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.hellotalk",
+   "desc": "Ana dili konuşanlarla pratik",
+   "default": false
+  },
+  {
+   "id": "tureng",
+   "name": "Tureng Sözlük",
+   "category": "learn",
+   "source": "play",
+   "pkg": "ttcmobile.tureng",
+   "desc": "İngilizce-Türkçe sözlük",
+   "default": true
+  },
+  {
+   "id": "merriam",
+   "name": "Merriam-Webster",
+   "category": "learn",
+   "source": "play",
+   "pkg": "com.merriamwebster",
+   "desc": "İngilizce sözlük",
+   "default": false
+  },
+  {
+   "id": "gtasks",
+   "name": "Google Görevler",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.apps.tasks",
+   "desc": "Görev listesi",
+   "default": false
+  },
+  {
+   "id": "gcontacts",
+   "name": "Google Kişiler",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.contacts",
+   "desc": "Rehber",
+   "default": false
+  },
+  {
+   "id": "gmessages",
+   "name": "Google Mesajlar",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.apps.messaging",
+   "desc": "SMS ve RCS",
+   "default": false
+  },
+  {
+   "id": "gdialer",
+   "name": "Google Telefon",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.dialer",
+   "desc": "Arama ve spam koruması",
+   "default": false
+  },
+  {
+   "id": "gclock",
+   "name": "Google Saat",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.google.android.deskclock",
+   "desc": "Alarm ve zamanlayıcı",
+   "default": false
+  },
+  {
+   "id": "gauthenticator",
+   "name": "Google Authenticator",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.google.android.apps.authenticator2",
+   "desc": "2FA kodları",
+   "default": true
+  },
+  {
+   "id": "authy",
+   "name": "Twilio Authy",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.authy.authy",
+   "desc": "2FA kodları",
+   "default": false
+  },
+  {
+   "id": "nordvpn",
+   "name": "NordVPN",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.nordvpn.android",
+   "desc": "VPN",
+   "default": false
+  },
+  {
+   "id": "expressvpn",
+   "name": "ExpressVPN",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.expressvpn.vpn",
+   "desc": "VPN",
+   "default": false
+  },
+  {
+   "id": "malwarebytes",
+   "name": "Malwarebytes",
+   "category": "security",
+   "source": "play",
+   "pkg": "org.malwarebytes.antimalware",
+   "desc": "Kötü amaçlı yazılım tarayıcı",
+   "default": false
+  },
+  {
+   "id": "kaspersky",
+   "name": "Kaspersky",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.kms.free",
+   "desc": "Antivirüs",
+   "default": false
+  },
+  {
+   "id": "duckduckgo",
+   "name": "DuckDuckGo",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.duckduckgo.mobile.android",
+   "desc": "Gizlilik tarayıcısı",
+   "default": true
+  },
+  {
+   "id": "opera",
+   "name": "Opera",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.opera.browser",
+   "desc": "Ücretsiz VPN'li tarayıcı",
+   "default": false
+  },
+  {
+   "id": "edge",
+   "name": "Microsoft Edge",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.microsoft.emmx",
+   "desc": "Tarayıcı",
+   "default": false
+  },
+  {
+   "id": "vivaldi",
+   "name": "Vivaldi",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.vivaldi.browser",
+   "desc": "Özelleştirilebilir tarayıcı",
+   "default": false
+  },
+  {
+   "id": "samsung_internet",
+   "name": "Samsung Internet",
+   "category": "productivity",
+   "source": "play",
+   "pkg": "com.sec.android.app.sbrowser",
+   "desc": "Tarayıcı",
+   "default": false
+  },
+  {
+   "id": "termux_styling",
+   "name": "Termux:Styling",
+   "category": "dev",
+   "source": "fdroid",
+   "pkg": "com.termux.styling",
+   "desc": "Termux renk ve yazı tipi",
+   "default": false
+  },
+  {
+   "id": "expo_go",
+   "name": "Expo Go",
+   "category": "dev",
+   "source": "play",
+   "pkg": "host.exp.exponent",
+   "desc": "React Native uygulamalarını telefonda dene",
+   "default": false
+  },
+  {
+   "id": "speedtest",
+   "name": "Speedtest by Ookla",
+   "category": "security",
+   "source": "play",
+   "pkg": "org.zwanoo.android.speedtest",
+   "desc": "İnternet hız testi",
+   "default": true
+  },
+  {
+   "id": "fast_com",
+   "name": "FAST Speed Test",
+   "category": "security",
+   "source": "play",
+   "pkg": "com.netflix.Speedtest",
+   "desc": "Netflix hız testi",
+   "default": false
+  },
+  {
+   "id": "netmonster",
+   "name": "NetMonster",
+   "category": "security",
+   "source": "play",
+   "pkg": "cz.mroczis.netmonster",
+   "desc": "Hücresel sinyal ve baz istasyonu",
+   "default": false
+  },
+  {
+   "id": "emlakjet",
+   "name": "Emlakjet",
+   "category": "shop",
+   "source": "play",
+   "pkg": "com.emlakjet.android",
+   "desc": "Emlak ilanları",
+   "default": false
+  },
+  {
+   "id": "arabam",
+   "name": "arabam.com",
+   "category": "shop",
+   "source": "play",
+   "pkg": "com.arabam.android",
+   "desc": "Araç ilanları",
+   "default": false
+  },
+  {
+   "id": "ciceksepeti",
+   "name": "Çiçeksepeti",
+   "category": "shop",
+   "source": "play",
+   "pkg": "com.ciceksepeti.ciceksepeti",
+   "desc": "Hediye ve çiçek",
+   "default": false
+  },
+  {
+   "id": "trendyol_go",
+   "name": "Trendyol Go",
+   "category": "shop",
+   "source": "play",
+   "pkg": "com.trendyol.go",
+   "desc": "Yemek ve market",
+   "default": false
+  },
+  {
+   "id": "a101",
+   "name": "A101",
+   "category": "shop",
+   "source": "play",
+   "pkg": "org.studionord.a101",
+   "desc": "A101 market",
+   "default": false
+  },
+  {
+   "id": "bim",
+   "name": "BİM",
+   "category": "shop",
+   "source": "play",
+   "pkg": "com.bim.bimmobil",
+   "desc": "BİM aktüel",
+   "default": false
+  },
+  {
+   "id": "sokmarket",
+   "name": "ŞOK",
+   "category": "shop",
+   "source": "play",
+   "pkg": "com.sokmarket",
+   "desc": "ŞOK market",
+   "default": false
+  },
+  {
+   "id": "turkcell",
+   "name": "Turkcell",
+   "category": "finance",
+   "source": "play",
+   "pkg": "com.turkcell.ott",
+   "desc": "Hat ve fatura",
+   "default": false
+  },
+  {
+   "id": "vodafone",
+   "name": "Vodafone Yanımda",
+   "category": "finance",
+   "source": "play",
+   "pkg": "com.vodafone.selfservis",
+   "desc": "Hat ve fatura",
+   "default": false
+  },
+  {
+   "id": "turktelekom",
+   "name": "Türk Telekom",
+   "category": "finance",
+   "source": "play",
+   "pkg": "com.ttech.android.onlineislem",
+   "desc": "Hat ve fatura",
+   "default": false
+  },
+  {
+   "id": "bip",
+   "name": "BiP",
+   "category": "social",
+   "source": "play",
+   "pkg": "com.turkcell.bip",
+   "desc": "Turkcell mesajlaşma",
+   "default": false
+  },
+  {
+   "id": "ptt",
+   "name": "PTT",
+   "category": "finance",
+   "source": "play",
+   "pkg": "tr.gov.ptt.epttavm",
+   "desc": "PTT AVM",
+   "default": false
+  },
+  {
+   "id": "hgs",
+   "name": "HGS",
+   "category": "travel",
+   "source": "play",
+   "pkg": "com.ptt.hgs",
+   "desc": "Köprü ve otoyol geçiş",
+   "default": false
+  },
+  {
+   "id": "tcdd",
+   "name": "TCDD Taşımacılık",
+   "category": "travel",
+   "source": "play",
+   "pkg": "tr.gov.tcdd.tasimacilik",
+   "desc": "Tren bileti",
+   "default": false
+  },
+  {
+   "id": "enuygun",
+   "name": "Enuygun",
+   "category": "travel",
+   "source": "play",
+   "pkg": "com.mobilatolye.android.enuygun",
+   "desc": "Uçak ve otobüs bileti",
    "default": false
   }
  ],
@@ -4061,6 +4196,9 @@
     "wireguard",
     "bitwarden",
     "aegis",
+    "gauthenticator",
+    "duckduckgo",
+    "speedtest",
     "termux",
     "hackerskb",
     "orbot",
@@ -4169,7 +4307,6 @@
     "qfield",
     "gpstest",
     "dwg_fastview",
-    "earthquake",
     "autocad",
     "fieldmaps",
     "swmaps",
@@ -4210,6 +4347,7 @@
     "duolingo",
     "wikipedia",
     "turkiye_edevlet",
+    "tureng",
     "geogebra",
     "photomath",
     "anki",
@@ -4225,15 +4363,13 @@
     "turkiye_edevlet",
     "enabiz",
     "mhrs",
-    "earthquake",
     "ziraat",
     "papara",
     "trendyol",
     "yemeksepeti",
     "sahibinden",
     "bitaksi",
-    "istanbulkart",
-    "eksi"
+    "istanbulkart"
    ]
   },
   {

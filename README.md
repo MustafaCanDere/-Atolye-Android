@@ -12,10 +12,10 @@
 
 Yeni bir telefon kurarken Play Store'da tek tek arama yapmak zaman kaybı. Atölye mühendislik, yazılım ve iş araçlarını tek ekranda toplar: işaretle, **Seçilenleri Kur**'a bas, sırayla kursun.
 
-- **431 uygulama, 23 kategori:** eğitim, finans ve bankalar, sağlık ve spor, seyahat, alışveriş ve yemek, sosyal medya, haber, eğlence ve oyun, akıllı ev, iş yeri ve ofis, yapay zeka, siber güvenlik ve ağ, kodlama, DevOps ve uzak erişim, tasarım, donanım, elektrik-elektronik ve IoT, makine/CAD, inşaat ve harita, kimya/biyo/tıp, uzay ve havacılık, matematik ve bilim, verimlilik.
+- **446 uygulama, 23 kategori:** eğitim, finans ve bankalar, sağlık ve spor, seyahat, alışveriş ve yemek, sosyal medya, haber, eğlence ve oyun, akıllı ev, iş yeri ve ofis, yapay zeka, siber güvenlik ve ağ, kodlama, DevOps ve uzak erişim, tasarım, donanım, elektrik-elektronik ve IoT, makine/CAD, inşaat ve harita, kimya/biyo/tıp, uzay ve havacılık, matematik ve bilim, verimlilik.
 - **21 hazır profil:** Temel Paket, Türkiye Paketi, Öğrenci, Finans, Sağlık, Seyahat, Akıllı Ev, İş Yeri, Yapay Zeka, Siber Güvenlik, Yazılım, DevOps, Donanım, Tasarım ve her mühendislik dalı için bir profil.
 - **İki kurulum yolu:**
-  - **F-Droid** (60 açık kaynak uygulama): APK resmî F-Droid deposundan indirilir, işlemcine uygun sürüm seçilir ve Android'in kurulum ekranı açılır. Sen sadece **Yükle**'ye basarsın.
+  - **F-Droid** (59 açık kaynak uygulama): APK resmî F-Droid deposundan indirilir, işlemcine uygun sürüm seçilir ve Android'in kurulum ekranı açılır. Sen sadece **Yükle**'ye basarsın.
   - **Play Store:** uygulamanın sayfası açılır, **Yükle**'ye basıp geri dönersin, Atölye sıradakine geçer.
 - **Zaten kurulu olanları tanır**, atlar ve kartında ✓ gösterir.
 - Canlı arama, kategori filtresi, kurulum ekranında ilerleme, indirme hızı ve sayaçlar (kuruldu / zaten kurulu / Play'de bekliyor / atlandı).
