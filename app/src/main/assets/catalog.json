@@ -3710,15 +3710,6 @@
    "default": false
   },
   {
-   "id": "unsplash",
-   "name": "Unsplash",
-   "category": "design_media",
-   "source": "play",
-   "pkg": "com.unsplash.android",
-   "desc": "Ücretsiz yüksek çözünürlüklü fotoğraflar",
-   "default": false
-  },
-  {
    "id": "tumblr",
    "name": "Tumblr",
    "category": "social",
@@ -3764,15 +3755,6 @@
    "default": false
   },
   {
-   "id": "socratic",
-   "name": "Socratic by Google",
-   "category": "learn",
-   "source": "play",
-   "pkg": "com.google.socratic",
-   "desc": "Ödev yardımı",
-   "default": false
-  },
-  {
    "id": "babbel",
    "name": "Babbel",
    "category": "learn",
@@ -3789,15 +3771,6 @@
    "pkg": "com.hellotalk",
    "desc": "Ana dili konuşanlarla pratik",
    "default": false
-  },
-  {
-   "id": "tureng",
-   "name": "Tureng Sözlük",
-   "category": "learn",
-   "source": "play",
-   "pkg": "ttcmobile.tureng",
-   "desc": "İngilizce-Türkçe sözlük",
-   "default": true
   },
   {
    "id": "merriam",
@@ -3899,15 +3872,6 @@
    "default": false
   },
   {
-   "id": "kaspersky",
-   "name": "Kaspersky",
-   "category": "security",
-   "source": "play",
-   "pkg": "com.kms.free",
-   "desc": "Antivirüs",
-   "default": false
-  },
-  {
    "id": "duckduckgo",
    "name": "DuckDuckGo",
    "category": "security",
@@ -3998,24 +3962,6 @@
    "default": false
   },
   {
-   "id": "emlakjet",
-   "name": "Emlakjet",
-   "category": "shop",
-   "source": "play",
-   "pkg": "com.emlakjet.android",
-   "desc": "Emlak ilanları",
-   "default": false
-  },
-  {
-   "id": "arabam",
-   "name": "arabam.com",
-   "category": "shop",
-   "source": "play",
-   "pkg": "com.arabam.android",
-   "desc": "Araç ilanları",
-   "default": false
-  },
-  {
    "id": "ciceksepeti",
    "name": "Çiçeksepeti",
    "category": "shop",
@@ -4031,33 +3977,6 @@
    "source": "play",
    "pkg": "com.trendyol.go",
    "desc": "Yemek ve market",
-   "default": false
-  },
-  {
-   "id": "a101",
-   "name": "A101",
-   "category": "shop",
-   "source": "play",
-   "pkg": "org.studionord.a101",
-   "desc": "A101 market",
-   "default": false
-  },
-  {
-   "id": "bim",
-   "name": "BİM",
-   "category": "shop",
-   "source": "play",
-   "pkg": "com.bim.bimmobil",
-   "desc": "BİM aktüel",
-   "default": false
-  },
-  {
-   "id": "sokmarket",
-   "name": "ŞOK",
-   "category": "shop",
-   "source": "play",
-   "pkg": "com.sokmarket",
-   "desc": "ŞOK market",
    "default": false
   },
   {
@@ -4094,24 +4013,6 @@
    "source": "play",
    "pkg": "com.turkcell.bip",
    "desc": "Turkcell mesajlaşma",
-   "default": false
-  },
-  {
-   "id": "ptt",
-   "name": "PTT",
-   "category": "finance",
-   "source": "play",
-   "pkg": "tr.gov.ptt.epttavm",
-   "desc": "PTT AVM",
-   "default": false
-  },
-  {
-   "id": "hgs",
-   "name": "HGS",
-   "category": "travel",
-   "source": "play",
-   "pkg": "com.ptt.hgs",
-   "desc": "Köprü ve otoyol geçiş",
    "default": false
   },
   {
@@ -4347,7 +4248,6 @@
     "duolingo",
     "wikipedia",
     "turkiye_edevlet",
-    "tureng",
     "geogebra",
     "photomath",
     "anki",
