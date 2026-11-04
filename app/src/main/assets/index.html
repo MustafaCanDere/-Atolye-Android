@@ -287,16 +287,31 @@ function wake(kind, data) { if (Q && Q.waiter && Q.waiter.kind === kind) { const
 
 window.__native = ev => {
   if (!Q) return;
-  const x = Q.items[Q.i]; if (!x || ev.pkg !== x.p.pkg) return;
+  if (ev.type === 'queue') { // servis sırayı bitirdi; bekleyen kalmasın
+    if (Q.waitPkg) { const w = Q.waitPkg; Q.waitPkg = null; w.res({ state: 'cancelled', msg: 'Durduruldu' }); }
+    return;
+  }
+  const x = Q.items.find(y => y.p.pkg === ev.pkg); if (!x) return;
+  const isCur = Q.items[Q.i] === x;
   if (ev.type === 'progress') {
+    if (!isCur) return;
     const pct = ev.total > 0 ? Math.round(ev.done / ev.total * 100) : null;
     $('ovDl').textContent = `İndiriliyor ${pct != null ? '%' + pct + ' · ' : ''}${fmtSize(ev.done)} / ${fmtSize(ev.total)}${ev.speed ? ' · ' + fmtSize(ev.speed) + '/s' : ''}`;
     return;
   }
   const label = { resolving: 'F-Droid\'de sürüm aranıyor', downloading: 'İndiriliyor', installing: 'Android kurulum onayı bekleniyor' }[ev.state];
-  if (label) { x.note = label; $('ovNow').textContent = x.p.name + ' · ' + label; if (ev.state !== 'downloading') $('ovDl').textContent = ''; renderQueue(); return; }
-  wake('fdroid', ev);
+  if (label) {
+    x.note = label;
+    if (isCur) { $('ovNow').textContent = x.p.name + ' · ' + label; if (ev.state !== 'downloading') $('ovDl').textContent = ''; }
+    renderQueue(); return;
+  }
+  if (Q.waitPkg && Q.waitPkg.pkg === ev.pkg) { const w = Q.waitPkg; Q.waitPkg = null; w.res(ev); }
+  else Q.results[ev.pkg] = ev;
 };
+function waitPkg(pkg) {
+  if (Q.results[pkg]) { const ev = Q.results[pkg]; delete Q.results[pkg]; return Promise.resolve(ev); }
+  return new Promise(res => { Q.waitPkg = { pkg, res }; });
+}
 window.__resume = () => {
   refreshInstalled();
   if (Q) {
@@ -355,12 +370,11 @@ async function fdroidStep(x, allowed) {
   }
   setItem(x, 'run', 'F-Droid\'e bağlanıyor');
   $('ovNow').textContent = x.p.name + ' · F-Droid';
-  N.installFdroid(x.p.pkg);
-  const ev = await waitFor('fdroid');
+  const ev = await waitPkg(x.p.pkg);
   $('ovDl').textContent = '';
   if (ev.state === 'done') setItem(x, 'done', 'F-Droid\'den kuruldu');
   else if (ev.state === 'cancelled') setItem(x, 'skip', ev.msg || 'İptal edildi');
-  else if (ev.state === 'notfound') { x.note = 'F-Droid\'de yok, Play Store deneniyor'; await playStep(x); }
+  else if (ev.state === 'notfound') { setItem(x, 'wait', 'F-Droid\'de yok, Play Store denenecek'); Q.playLater.push(x); }
   else setItem(x, 'fail', ev.msg || 'Kurulamadı');
 }
 
@@ -369,7 +383,7 @@ async function runQueue() {
   const items = DB.programs.filter(p => sel.has(p.id)).map(p => ({ p, state: 'wait', note: '' }));
   // F-Droid olanlar önce: indirme + onay akışı, ardından Play sayfaları
   items.sort((a, b) => (a.p.source === 'fdroid' ? 0 : 1) - (b.p.source === 'fdroid' ? 0 : 1));
-  Q = { items, i: 0, stopped: false, waiter: null, done: false };
+  Q = { items, i: 0, stopped: false, waiter: null, done: false, results: {}, waitPkg: null, playLater: [] };
   $('ov').classList.add('show'); $('ov').classList.remove('finished');
   $('spin').innerHTML = ''; $('ovTitle').textContent = 'Kuruluyor'; $('stop').style.display = ''; $('closeOv').style.display = 'none';
   renderQueue();
@@ -378,12 +392,22 @@ async function runQueue() {
   const needFd = items.some(x => x.p.source === 'fdroid' && !installed.has(x.p.pkg));
   if (N && needFd && !allowed) allowed = await askPermission();
 
+  // F-Droid kurulumları arka plan servisinde sırayla yürür; uygulamadan çıkınca da devam eder.
+  const fd = items.filter(x => x.p.source === 'fdroid' && !installed.has(x.p.pkg));
+  if (N && allowed && fd.length && !Q.stopped) N.installFdroidAll(JSON.stringify(fd.map(x => ({ pkg: x.p.pkg, name: x.p.name }))));
+
   for (Q.i = 0; Q.i < items.length; Q.i++) {
     if (Q.stopped) break;
     const x = items[Q.i];
     if (installed.has(x.p.pkg)) { setItem(x, 'already', 'Zaten kurulu'); continue; }
     if (x.p.source === 'fdroid') await fdroidStep(x, allowed);
     else await playStep(x);
+  }
+  // F-Droid'de bulunamayanlar en sonda Play Store'dan
+  for (const x of Q.playLater) {
+    if (Q.stopped) break;
+    Q.i = items.indexOf(x);
+    await playStep(x);
   }
   items.forEach(x => { if (x.state === 'wait' || x.state === 'run') x.state = 'skip', x.note = 'Durduruldu'; });
   finish();
@@ -410,7 +434,8 @@ $('stop').onclick = () => {
   $('perm').classList.remove('show'); $('playNote').classList.remove('show');
   const w = Q.waiter; Q.waiter = null;
   if (Q.skipPlay) { const f = Q.skipPlay; Q.skipPlay = null; f('skip'); }
-  if (w) w.res(w.kind === 'fdroid' ? { state: 'cancelled', msg: 'Durduruldu' } : false);
+  if (w) w.res(false);
+  if (Q.waitPkg) { const p = Q.waitPkg; Q.waitPkg = null; p.res({ state: 'cancelled', msg: 'Durduruldu' }); }
 };
 $('closeOv').onclick = closeOverlay;
 $('go').onclick = () => { if (!Q) runQueue(); };

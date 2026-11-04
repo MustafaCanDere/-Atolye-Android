@@ -2,6 +2,7 @@ package com.atolye.app;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Arayuz assets/index.html icinde (WebView). Kurulum motoru Java tarafinda:
  * F-Droid'den APK indirip PackageInstaller ile kurar, Play Store sayfasini acar,
@@ -32,6 +35,7 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
 
     private WebView web;
     private FdroidInstaller installer;
+    private volatile boolean visible;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
@@ -42,7 +46,8 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
                 .build();
 
-        installer = new FdroidInstaller(this, this);
+        installer = FdroidInstaller.get(this);
+        installer.setListener(this);
 
         web = new WebView(this);
         setContentView(web);
@@ -71,6 +76,13 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
 
         if (savedInstanceState != null) web.restoreState(savedInstanceState);
         else web.loadUrl(START_URL);
+    }
+
+    private void askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= 33
+                && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 7);
+        }
     }
 
     private boolean openExternal(Uri u) {
@@ -144,9 +156,28 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
             });
         }
 
+        /** F-Droid paketlerini arka plan servisine sirayla kurdurur: [{pkg,name},...] */
         @JavascriptInterface
-        public void installFdroid(String pkg) {
-            installer.install(pkg);
+        public void installFdroidAll(String json) {
+            ArrayList<String> pkgs = new ArrayList<>(), names = new ArrayList<>();
+            try {
+                JSONArray a = new JSONArray(json);
+                for (int i = 0; i < a.length(); i++) {
+                    JSONObject o = a.getJSONObject(i);
+                    pkgs.add(o.getString("pkg"));
+                    names.add(o.optString("name", o.getString("pkg")));
+                }
+            } catch (JSONException ignored) { }
+            if (pkgs.isEmpty()) return;
+            runOnUiThread(() -> {
+                askNotificationPermission();
+                InstallService.start(MainActivity.this, pkgs, names);
+            });
+        }
+
+        @JavascriptInterface
+        public boolean busy() {
+            return installer.isRunning();
         }
 
         @JavascriptInterface
@@ -175,21 +206,30 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
     }
 
     @Override
-    public void launchUserAction(Intent confirm) {
+    public boolean launchUserAction(Intent confirm) {
+        // Arka plandan Activity acmak Android 10+'da engellenir; o durumda bildirim gosterilir
+        // ve uygulamaya donuldugunde onResume bu ekrani tekrar acar.
+        if (!visible) return false;
         runOnUiThread(() -> {
             try {
-                confirm.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(confirm);
-            } catch (ActivityNotFoundException e) {
-                installer.failCurrent("Kurulum ekranı açılamadı");
-            }
+                startActivity(new Intent(confirm));
+            } catch (ActivityNotFoundException ignored) { }
         });
+        return true;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        visible = true;
         if (web != null) web.evaluateJavascript("window.__resume && window.__resume()", null);
+        installer.resumePendingConfirm();
+    }
+
+    @Override
+    protected void onPause() {
+        visible = false;
+        super.onPause();
     }
 
     @Override
@@ -208,7 +248,8 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
 
     @Override
     protected void onDestroy() {
-        installer.release();
+        // Kurucu surec boyunca yasar; servis calisiyorsa kurulum devam eder.
+        installer.setListener(null);
         super.onDestroy();
     }
 }

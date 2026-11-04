@@ -38,8 +38,10 @@ import java.util.zip.ZipFile;
 
 /**
  * F-Droid'in resmi deposundan (f-droid.org/repo) APK indirir ve Android'in
- * PackageInstaller'i ile kurar. Android sessiz kuruluma izin vermez; kullanici
- * her uygulama icin sistemin "Yukle" onayini gorur.
+ * PackageInstaller'i ile kurar. Sira (queue) burada, arka planda calisir; uygulama
+ * kapansa da InstallService on plan servisi sayesinde devam eder. Android yeni
+ * kurulumlarda sistemin "Yukle" onayini ister; uygulama arka plandaysa onay
+ * bildirim olarak gelir, uygulamaya donunce de kendiliginden acilir.
  *
  * Olaylar (Listener.onEvent):
  *   {type:"status", pkg, state:"resolving|downloading|installing|done|error|notfound|cancelled", msg}
@@ -48,25 +50,48 @@ import java.util.zip.ZipFile;
 class FdroidInstaller {
     interface Listener {
         void onEvent(JSONObject event);
-        void launchUserAction(Intent confirm);
+        /** Onay ekranini ac. Acilamadiysa (uygulama arka planda) false doner. */
+        boolean launchUserAction(Intent confirm);
+    }
+
+    /** Servis tarafi: bildirim guncelle, onay bildirimi goster, sira bitince dur. */
+    interface Host {
+        void onProgress(String name, String text, int pct);
+        void onNeedsConfirm(String pkg, Intent confirm);
+        void onConfirmHandled();
+        void onQueueFinished();
+    }
+
+    private static FdroidInstaller instance;
+
+    static synchronized FdroidInstaller get(Context ctx) {
+        if (instance == null) instance = new FdroidInstaller(ctx);
+        return instance;
     }
 
     private static final String API = "https://f-droid.org/api/v1/packages/";
     private static final String REPO = "https://f-droid.org/repo/";
     private static final String ACTION = "com.atolye.app.INSTALL_STATUS";
 
+    private static final long CONFIRM_TIMEOUT_MS = 15 * 60 * 1000L;
+
     private final Context ctx;
-    private final Listener listener;
+    private volatile Listener listener;
+    private volatile Host host;
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private final BroadcastReceiver receiver;
+    private final Object lock = new Object();
 
     private volatile String current;
     private volatile boolean cancelled;
     private volatile int sessionId = -1;
+    private volatile Intent pendingConfirm;
+    private volatile boolean running;
+    private String finalState; // lock ile korunur
+    private final List<JSONObject> backlog = new ArrayList<>();
 
-    FdroidInstaller(Context ctx, Listener listener) {
+    private FdroidInstaller(Context ctx) {
         this.ctx = ctx.getApplicationContext();
-        this.listener = listener;
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context c, Intent intent) {
@@ -77,20 +102,55 @@ class FdroidInstaller {
                 ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
-    void release() {
-        try { ctx.unregisterReceiver(receiver); } catch (IllegalArgumentException ignored) { }
-        worker.shutdownNow();
+    void setListener(Listener l) {
+        listener = l;
+        if (l == null) return;
+        List<JSONObject> copy;
+        synchronized (backlog) { copy = new ArrayList<>(backlog); backlog.clear(); }
+        for (JSONObject o : copy) l.onEvent(o);
     }
 
-    void install(final String pkg) {
+    void setHost(Host h) { host = h; }
+
+    boolean isRunning() { return running; }
+
+    /** Uygulama one gelince bekleyen onay ekranini tekrar ac. */
+    void resumePendingConfirm() {
+        Intent c = pendingConfirm;
+        Listener l = listener;
+        if (c != null && l != null && l.launchUserAction(c)) {
+            Host h = host;
+            if (h != null) h.onConfirmHandled();
+        }
+    }
+
+    /** Paketleri sirayla indirip kurar. Her paket icin olaylar gelir, sonunda {type:"queue",state:"finished"}. */
+    void installAll(final List<String> pkgs, final List<String> names) {
         cancelled = false;
-        current = pkg;
+        running = true;
+        synchronized (backlog) { backlog.clear(); }
         worker.execute(() -> {
-            try {
-                run(pkg);
-            } catch (Exception e) {
-                status(pkg, cancelled ? "cancelled" : "error", e.getMessage());
+            for (int i = 0; i < pkgs.size(); i++) {
+                if (cancelled) { status(pkgs.get(i), "cancelled", "Durduruldu"); continue; }
+                String pkg = pkgs.get(i);
+                String name = i < names.size() ? names.get(i) : pkg;
+                current = pkg;
+                Host h = host;
+                if (h != null) h.onProgress(name, (i + 1) + "/" + pkgs.size() + " · hazırlanıyor", -1);
+                try {
+                    run(pkg, name, i + 1, pkgs.size());
+                } catch (Exception e) {
+                    status(pkg, cancelled ? "cancelled" : "error", e.getMessage());
+                }
             }
+            current = null;
+            running = false;
+            pendingConfirm = null;
+            JSONObject o = new JSONObject();
+            try { o.put("type", "queue"); o.put("state", "finished"); } catch (JSONException ignored) { }
+            emit(o);
+            Host h = host;
+            if (h != null) h.onQueueFinished();
         });
     }
 
@@ -100,17 +160,13 @@ class FdroidInstaller {
         if (id != -1) {
             try { ctx.getPackageManager().getPackageInstaller().abandonSession(id); } catch (Exception ignored) { }
             sessionId = -1;
-            String pkg = current;
-            if (pkg != null) status(pkg, "cancelled", null);
         }
+        finishWait("cancelled");
     }
 
-    void failCurrent(String msg) {
-        String pkg = current;
-        if (pkg != null) status(pkg, "error", msg);
-    }
 
-    private void run(String pkg) throws IOException, JSONException {
+    private void run(String pkg, String name, int idx, int total) throws IOException, JSONException {
+        this.curName = name; this.curIdx = idx; this.curTotal = total;
         status(pkg, "resolving", null);
         List<Long> codes = resolveVersions(pkg);
         if (codes == null) {
@@ -143,10 +199,47 @@ class FdroidInstaller {
                 continue;
             }
             status(pkg, "installing", null);
+            Host h = host;
+            if (h != null) h.onProgress(name, idx + "/" + total + " · kuruluyor", -1);
+            synchronized (lock) { finalState = null; }
             commit(pkg, apk);
+            awaitResult(pkg);
             return;
         }
         status(pkg, "error", lastProblem);
+    }
+
+    private volatile String curName;
+    private volatile int curIdx, curTotal;
+
+    /** Kurulum sonucu (ya da iptal) gelene kadar bekler; boylece sira bir sonrakine gecmez. */
+    private void awaitResult(String pkg) {
+        long end = System.currentTimeMillis() + CONFIRM_TIMEOUT_MS;
+        synchronized (lock) {
+            while (finalState == null) {
+                long left = end - System.currentTimeMillis();
+                if (left <= 0) break;
+                try { lock.wait(left); } catch (InterruptedException e) { break; }
+            }
+            if (finalState == null) {
+                int id = sessionId;
+                if (id != -1) {
+                    try { ctx.getPackageManager().getPackageInstaller().abandonSession(id); } catch (Exception ignored) { }
+                    sessionId = -1;
+                }
+                pendingConfirm = null;
+                status(pkg, "cancelled", "Onay verilmedi (zaman aşımı)");
+            } else if ("cancelled".equals(finalState) && cancelled) {
+                status(pkg, "cancelled", "Durduruldu");
+            }
+        }
+    }
+
+    private void finishWait(String state) {
+        synchronized (lock) {
+            finalState = state;
+            lock.notifyAll();
+        }
     }
 
     /** Onerilen surum ve ayni surum adindaki diger (ABI) kodlari, buyukten kucuge. */
@@ -195,6 +288,9 @@ class FdroidInstaller {
                 if (now - lastEmit > 200 || done == total) {
                     lastEmit = now;
                     progress(pkg, done, total, done * 1000.0 / Math.max(1, now - t0));
+                    Host h = host;
+                    if (h != null) h.onProgress(curName, curIdx + "/" + curTotal + " · indiriliyor",
+                            total > 0 ? (int) (done * 100 / total) : -1);
                 }
             }
         }
@@ -226,6 +322,13 @@ class FdroidInstaller {
                 new PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL);
         params.setAppPackageName(pkg);
         params.setSize(apk.length());
+        // Android 12+: daha once Atolye'nin kurdugu uygulamalarin guncellemeleri onaysiz kurulur.
+        if (Build.VERSION.SDK_INT >= 31) {
+            params.setRequireUserAction(PackageInstaller.SessionParams.USER_ACTION_NOT_REQUIRED);
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            params.setInstallReason(android.content.pm.PackageManager.INSTALL_REASON_USER);
+        }
         int id = pi.createSession(params);
         sessionId = id;
         try (PackageInstaller.Session s = pi.openSession(id)) {
@@ -257,13 +360,26 @@ class FdroidInstaller {
             Intent confirm;
             if (Build.VERSION.SDK_INT >= 33) confirm = intent.getParcelableExtra(Intent.EXTRA_INTENT, Intent.class);
             else confirm = intent.getParcelableExtra(Intent.EXTRA_INTENT);
-            if (confirm != null) listener.launchUserAction(confirm);
+            if (confirm == null) return;
+            pendingConfirm = confirm;
+            Listener l = listener;
+            boolean shown = l != null && l.launchUserAction(confirm);
+            Host h = host;
+            if (h != null) {
+                if (shown) h.onConfirmHandled();
+                else h.onNeedsConfirm(pkg, confirm);
+            }
             return;
         }
         sessionId = -1;
+        pendingConfirm = null;
+        Host h = host;
+        if (h != null) h.onConfirmHandled();
+        if (cancelled) { finishWait("cancelled"); return; }
         if (st == PackageInstaller.STATUS_SUCCESS) status(pkg, "done", null);
         else if (st == PackageInstaller.STATUS_FAILURE_ABORTED) status(pkg, "cancelled", "Kurulum onaylanmadı");
         else status(pkg, "error", intent.getStringExtra(PackageInstaller.EXTRA_STATUS_MESSAGE));
+        finishWait("final");
     }
 
     // ---- yardimcilar ----
@@ -298,7 +414,7 @@ class FdroidInstaller {
             o.put("state", state);
             if (msg != null) o.put("msg", msg);
         } catch (JSONException ignored) { }
-        listener.onEvent(o);
+        emit(o);
     }
 
     private void progress(String pkg, long done, long total, double speed) {
@@ -310,6 +426,14 @@ class FdroidInstaller {
             o.put("total", total);
             o.put("speed", speed);
         } catch (JSONException ignored) { }
-        listener.onEvent(o);
+        Listener l = listener;
+        if (l != null) l.onEvent(o); // ilerleme olaylari biriktirilmez
+    }
+
+    /** Arayuz yoksa (uygulama kapali) sonuc olaylarini sakla, geri gelince ilet. */
+    private void emit(JSONObject o) {
+        Listener l = listener;
+        if (l != null) { l.onEvent(o); return; }
+        synchronized (backlog) { backlog.add(o); }
     }
 }
