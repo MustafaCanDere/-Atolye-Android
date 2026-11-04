@@ -4360,15 +4360,6 @@
    "default": false
   },
   {
-   "id": "gamepass",
-   "name": "Xbox Game Pass",
-   "category": "games",
-   "source": "play",
-   "pkg": "com.gamepass",
-   "desc": "Bulut oyun",
-   "default": false
-  },
-  {
    "id": "mindustry",
    "name": "Mindustry",
    "category": "games",
@@ -4394,15 +4385,6 @@
    "pkg": "name.boyle.chris.sgtpuzzles",
    "desc": "40 mantık bulmacası",
    "default": true
-  },
-  {
-   "id": "g2048",
-   "name": "2048",
-   "category": "games",
-   "source": "fdroid",
-   "pkg": "com.uberspot.a2048",
-   "desc": "Sayı bulmaca",
-   "default": false
   },
   {
    "id": "minetest",
@@ -4612,15 +4594,6 @@
    "default": false
   },
   {
-   "id": "premiere_rush",
-   "name": "Adobe Premiere Rush",
-   "category": "design_media",
-   "source": "play",
-   "pkg": "com.adobe.premiererush.videoeditor",
-   "desc": "Video düzenleme",
-   "default": false
-  },
-  {
    "id": "pixlr",
    "name": "Pixlr",
    "category": "design_media",
@@ -4684,15 +4657,6 @@
    "default": false
   },
   {
-   "id": "ms_lens",
-   "name": "Microsoft Lens",
-   "category": "office",
-   "source": "play",
-   "pkg": "com.microsoft.office.officelens",
-   "desc": "Belge tarayıcı",
-   "default": false
-  },
-  {
    "id": "camscanner",
    "name": "CamScanner",
    "category": "office",
@@ -4726,15 +4690,6 @@
    "source": "play",
    "pkg": "com.foxit.mobile.pdf.lite",
    "desc": "PDF düzenleme",
-   "default": false
-  },
-  {
-   "id": "smallpdf",
-   "name": "Smallpdf",
-   "category": "office",
-   "source": "play",
-   "pkg": "com.smallpdf.app",
-   "desc": "PDF araçları",
    "default": false
   },
   {
@@ -4888,15 +4843,6 @@
    "source": "fdroid",
    "pkg": "com.termux.gui",
    "desc": "Betiklerden arayüz",
-   "default": false
-  },
-  {
-   "id": "aide",
-   "name": "AIDE",
-   "category": "dev",
-   "source": "play",
-   "pkg": "com.aide.ui",
-   "desc": "Android IDE",
    "default": false
   },
   {
@@ -5377,33 +5323,6 @@
    "default": false
   },
   {
-   "id": "geekbench",
-   "name": "Geekbench 6",
-   "category": "hardware",
-   "source": "play",
-   "pkg": "com.primatelabs.geekbench6",
-   "desc": "Performans testi",
-   "default": false
-  },
-  {
-   "id": "gfxbench",
-   "name": "GFXBench",
-   "category": "hardware",
-   "source": "play",
-   "pkg": "com.glbenchmark.glbenchmark27",
-   "desc": "GPU testi",
-   "default": false
-  },
-  {
-   "id": "cpu_throttle",
-   "name": "CPU Throttling Test",
-   "category": "hardware",
-   "source": "play",
-   "pkg": "skynet.cputhrottlingtest",
-   "desc": "Isınma testi",
-   "default": false
-  },
-  {
    "id": "devinfo_hw",
    "name": "Device Info HW",
    "category": "hardware",
@@ -5437,15 +5356,6 @@
    "source": "play",
    "pkg": "it.Ettore.calcolielettrici",
    "desc": "Kablo, gerilim düşümü vb.",
-   "default": false
-  },
-  {
-   "id": "bt_electronics",
-   "name": "Bluetooth Electronics",
-   "category": "elec",
-   "source": "play",
-   "pkg": "com.keuwl.arduinobluetooth",
-   "desc": "Arduino kontrol paneli",
    "default": false
   },
   {
@@ -5584,15 +5494,6 @@
    "default": false
   },
   {
-   "id": "maxima",
-   "name": "Maxima",
-   "category": "science",
-   "source": "play",
-   "pkg": "jp.yhonda",
-   "desc": "Sembolik matematik (CAS)",
-   "default": false
-  },
-  {
    "id": "memrise",
    "name": "Memrise",
    "category": "learn",
@@ -5626,15 +5527,6 @@
    "source": "play",
    "pkg": "net.tandem",
    "desc": "Dil değişimi",
-   "default": false
-  },
-  {
-   "id": "udacity",
-   "name": "Udacity",
-   "category": "learn",
-   "source": "play",
-   "pkg": "com.udacity.android",
-   "desc": "Teknoloji kursları",
    "default": false
   },
   {
@@ -5728,15 +5620,6 @@
    "default": false
   },
   {
-   "id": "enpara",
-   "name": "Enpara.com",
-   "category": "finance",
-   "source": "play",
-   "pkg": "com.finansbank.enpara",
-   "desc": "Dijital banka",
-   "default": false
-  },
-  {
    "id": "midas",
    "name": "Midas",
    "category": "finance",
@@ -5751,15 +5634,6 @@
    "category": "finance",
    "source": "play",
    "pkg": "com.coinbase.android",
-   "desc": "Kripto",
-   "default": false
-  },
-  {
-   "id": "btcturk",
-   "name": "BtcTurk",
-   "category": "finance",
-   "source": "play",
-   "pkg": "com.btcturk",
    "desc": "Kripto",
    "default": false
   },
@@ -5992,7 +5866,7 @@
    "id": "openfoodfacts",
    "name": "Open Food Facts",
    "category": "health",
-   "source": "fdroid",
+   "source": "play",
    "pkg": "org.openfoodfacts.scanner",
    "desc": "Gıda etiketi tarayıcı",
    "default": false
@@ -6286,15 +6160,6 @@
    "default": false
   },
   {
-   "id": "infinity",
-   "name": "Infinity for Reddit",
-   "category": "social",
-   "source": "fdroid",
-   "pkg": "ml.docilealligator.infinityforreddit",
-   "desc": "Reddit istemcisi",
-   "default": false
-  },
-  {
    "id": "nytimes",
    "name": "The New York Times",
    "category": "news",
@@ -6553,15 +6418,6 @@
    "source": "play",
    "pkg": "com.coolkit",
    "desc": "Sonoff cihazları",
-   "default": false
-  },
-  {
-   "id": "thinq",
-   "name": "LG ThinQ",
-   "category": "home",
-   "source": "play",
-   "pkg": "com.lgeha.nuri",
-   "desc": "LG cihazları",
    "default": false
   },
   {
@@ -6906,8 +6762,7 @@
     "desmos",
     "phyphox",
     "wolfram",
-    "physics_toolbox",
-    "maxima"
+    "physics_toolbox"
    ]
   },
   {
@@ -6926,14 +6781,13 @@
   {
    "id": "games",
    "name": "🕹️ Oyuncu",
-   "desc": "Minecraft, Roblox, Steam Link, Game Pass ve açık kaynak oyunlar",
+   "desc": "Minecraft, Roblox, Steam Link ve açık kaynak oyunlar",
    "ids": [
     "chess",
     "mindustry",
     "sgtpuzzles",
     "minecraft",
     "roblox",
-    "gamepass",
     "discord"
    ]
   },
