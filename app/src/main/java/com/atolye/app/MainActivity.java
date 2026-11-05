@@ -76,6 +76,7 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
 
         if (savedInstanceState != null) web.restoreState(savedInstanceState);
         else web.loadUrl(START_URL);
+        Updater.checkOnStart(this);
     }
 
     private void askNotificationPermission() {
