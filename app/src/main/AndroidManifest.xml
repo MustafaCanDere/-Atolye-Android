@@ -38,5 +38,7 @@
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
+        <!-- Guncelleme kurulumunun sonucunu alir (Updater.java) -->
+        <receiver android:name=".Updater$Receiver" android:exported="false" />
     </application>
 </manifest>
