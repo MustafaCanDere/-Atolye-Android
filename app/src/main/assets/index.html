@@ -95,6 +95,11 @@ h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
 .notice.show{display:block}
 .notice p{margin:0 0 10px}
 .notice .row{display:flex;gap:8px;flex-wrap:wrap}
+.upd{display:none;align-items:center;gap:10px;margin:10px 0 0;background:var(--card);border:1px solid var(--border-sel);border-radius:14px;padding:10px 12px;font-size:14px}
+.upd.show{display:flex}
+.upd .t{flex:1;min-width:0}
+.upd small{display:block;opacity:.7;font-size:12.5px}
+.upd button{padding:9px 14px}
 .toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:var(--term);color:#fff;padding:9px 14px;border-radius:10px;font-size:13.5px;opacity:0;transition:.25s;pointer-events:none;z-index:30;max-width:90vw}
 .toast.show{opacity:1}
 </style>
@@ -105,6 +110,7 @@ h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
     <h1>Atölye</h1>
     <div class="sub">Telefonun için kurulum merkezi. Seç, tek dokunuşla kur.</div>
     <div class="stats" id="stats"></div>
+    <div class="upd" id="upd"><div class="t"><b id="updT">Yeni sürüm var</b><small id="updS"></small></div><button class="primary" id="updBtn">Güncelle</button></div>
   </header>
   <div class="search" style="position:sticky">
     <span class="ic">⌕</span>
@@ -285,7 +291,43 @@ function setItem(x, state, note) { x.state = state; if (note !== undefined) x.no
 function waitFor(kind) { return new Promise(res => { Q.waiter = { kind, res }; }); }
 function wake(kind, data) { if (Q && Q.waiter && Q.waiter.kind === kind) { const w = Q.waiter; Q.waiter = null; w.res(data); } }
 
+// ---------- Atölye'nin kendi güncellemesi ----------
+let UPD = null;
+function autoUpd() { try { return localStorage.getItem('atolye.autoupd') !== '0'; } catch (e) { return true; } }
+function startUpdate() {
+  if (!UPD || !N || UPD.busy) return;
+  UPD.busy = true;
+  $('updBtn').style.display = 'none';
+  $('updS').textContent = 'İndiriliyor…';
+  N.installUpdate(UPD.url);
+}
+function onSelfEvent(ev) {
+  if (ev.type === 'update') {
+    if (ev.none) return;
+    UPD = { url: ev.url, version: ev.version };
+    $('updT').textContent = 'Atölye ' + ev.version + ' hazır';
+    $('updS').textContent = 'Şu an ' + (N.version() || '?') + (autoUpd() ? ' · otomatik güncelleniyor' : '');
+    $('upd').classList.add('show');
+    if (autoUpd() && !Q) startUpdate();
+    return;
+  }
+  if (ev.type === 'progress') {
+    const pct = ev.total > 0 ? Math.round(ev.done / ev.total * 100) : null;
+    $('updS').textContent = 'İndiriliyor ' + (pct != null ? '%' + pct : fmtSize(ev.done));
+    return;
+  }
+  if (ev.state === 'installing') $('updS').textContent = 'Kuruluyor, Android onay isteyebilir';
+  else if (ev.state === 'done') $('updS').textContent = 'Güncellendi, yeniden başlatılıyor';
+  else if (ev.state === 'error' || ev.state === 'cancelled') {
+    if (UPD) UPD.busy = false;
+    $('updS').textContent = (ev.state === 'error' ? 'Güncellenemedi: ' : '') + (ev.msg || 'İptal edildi');
+    $('updBtn').style.display = ''; $('updBtn').textContent = 'Tekrar dene';
+  }
+}
+$('updBtn').onclick = startUpdate;
+
 window.__native = ev => {
+  if (ev.type === 'update' || ev.pkg === 'com.atolye.app') { onSelfEvent(ev); return; }
   if (!Q) return;
   if (ev.type === 'queue') { // servis sırayı bitirdi; bekleyen kalmasın
     if (Q.waitPkg) { const w = Q.waitPkg; Q.waitPkg = null; w.res({ state: 'cancelled', msg: 'Durduruldu' }); }
@@ -449,6 +491,7 @@ fetch('catalog.json').then(r => r.json()).then(db => {
   sel = new Set([...sel].filter(id => byId[id]));
   if (cat !== 'all' && !DB.catName[cat]) cat = 'all';
   refreshInstalled(); renderPresets(); renderAll();
+  if (N && N.checkUpdate) N.checkUpdate();
 }).catch(e => { $('list').innerHTML = '<div class="empty">Katalog yüklenemedi: ' + esc(e.message) + '</div>'; });
 })();
 </script>

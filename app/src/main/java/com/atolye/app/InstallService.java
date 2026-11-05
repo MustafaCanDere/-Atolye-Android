@@ -116,7 +116,10 @@ public class InstallService extends Service implements FdroidInstaller.Host {
 
     @Override
     public void onNeedsConfirm(String pkg, Intent confirm) {
-        Intent c = new Intent(confirm).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        // Bildirim once Atolye'yi acar; onay ekranini oradan (on planda) bir kez acariz.
+        Intent c = new Intent(this, MainActivity.class)
+                .setAction(MainActivity.ACTION_CONFIRM)
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pi = PendingIntent.getActivity(this, 2, c,
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         Notification n = builder(CH_CONFIRM)

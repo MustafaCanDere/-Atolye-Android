@@ -31,6 +31,7 @@ import java.util.ArrayList;
  * hangi paketlerin kurulu oldugunu soyler. Olaylar JS'e window.__native(...) ile gider.
  */
 public class MainActivity extends Activity implements FdroidInstaller.Listener {
+    static final String ACTION_CONFIRM = "com.atolye.app.CONFIRM";
     private static final String START_URL = "https://appassets.androidplatform.net/assets/index.html";
 
     private WebView web;
@@ -76,6 +77,23 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
 
         if (savedInstanceState != null) web.restoreState(savedInstanceState);
         else web.loadUrl(START_URL);
+    }
+
+    @SuppressWarnings("deprecation")
+    private long myVersionCode() {
+        try {
+            android.content.pm.PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+            return Build.VERSION.SDK_INT >= 28 ? pi.getLongVersionCode() : pi.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            return 0;
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        // Onay bildirimine dokunuldu: onResume bekleyen onayi bir kez acacak.
     }
 
     private void askNotificationPermission() {
@@ -173,6 +191,27 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
                 askNotificationPermission();
                 InstallService.start(MainActivity.this, pkgs, names);
             });
+        }
+
+        @JavascriptInterface
+        public void checkUpdate() {
+            installer.checkUpdate(myVersionCode());
+        }
+
+        @JavascriptInterface
+        public void installUpdate(String url) {
+            if (url != null && url.startsWith("https://github.com/MustafaCanDere/-Atolye-Android/releases/")) {
+                installer.installSelf(url);
+            }
+        }
+
+        @JavascriptInterface
+        public String version() {
+            try {
+                return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                return "";
+            }
         }
 
         @JavascriptInterface

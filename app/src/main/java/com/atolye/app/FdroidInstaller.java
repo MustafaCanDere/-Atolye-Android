@@ -72,6 +72,7 @@ class FdroidInstaller {
     private static final String API = "https://f-droid.org/api/v1/packages/";
     private static final String REPO = "https://f-droid.org/repo/";
     private static final String ACTION = "com.atolye.app.INSTALL_STATUS";
+    private static final String RELEASES = "https://api.github.com/repos/MustafaCanDere/-Atolye-Android/releases/latest";
 
     private static final long CONFIRM_TIMEOUT_MS = 15 * 60 * 1000L;
 
@@ -115,10 +116,12 @@ class FdroidInstaller {
     boolean isRunning() { return running; }
 
     /** Uygulama one gelince bekleyen onay ekranini tekrar ac. */
-    void resumePendingConfirm() {
+    synchronized void resumePendingConfirm() {
+        // Tek seferlik: ayni onay ekrani iki kez acilirsa ikincisi kurulumu bozar (Failed).
         Intent c = pendingConfirm;
         Listener l = listener;
         if (c != null && l != null && l.launchUserAction(c)) {
+            pendingConfirm = null;
             Host h = host;
             if (h != null) h.onConfirmHandled();
         }
@@ -151,6 +154,62 @@ class FdroidInstaller {
             emit(o);
             Host h = host;
             if (h != null) h.onQueueFinished();
+        });
+    }
+
+    /** Atolye'nin kendisini gunceller: APK'yi indirip ayni oturum akisiyla kurar. */
+    void installSelf(final String url) {
+        final String pkg = ctx.getPackageName();
+        worker.execute(() -> {
+            current = pkg;
+            curName = "Atölye"; curIdx = 1; curTotal = 1;
+            try {
+                File dir = new File(ctx.getCacheDir(), "apk");
+                if (!dir.exists() && !dir.mkdirs()) throw new IOException("Önbellek klasörü açılamadı");
+                File apk = new File(dir, "self.apk");
+                status(pkg, "downloading", null);
+                download(url, apk, pkg);
+                status(pkg, "installing", null);
+                synchronized (lock) { finalState = null; }
+                commit(pkg, apk);
+                awaitResult(pkg);
+            } catch (Exception e) {
+                status(pkg, "error", e.getMessage());
+            }
+            current = null;
+        });
+    }
+
+    /** GitHub'daki son surumu kontrol eder: {type:"update", version, code, url} ya da {type:"update", none:true}. */
+    void checkUpdate(final long myCode) {
+        worker.execute(() -> {
+            JSONObject o = new JSONObject();
+            try {
+                o.put("type", "update");
+                HttpURLConnection c = open(RELEASES);
+                c.setRequestProperty("Accept", "application/vnd.github+json");
+                if (c.getResponseCode() != 200) throw new IOException("HTTP " + c.getResponseCode());
+                JSONObject r = new JSONObject(readAll(c.getInputStream()));
+                String tag = r.optString("tag_name", "");
+                long code = -1;
+                int dot = tag.lastIndexOf('.');
+                if (dot >= 0) try { code = Long.parseLong(tag.substring(dot + 1)); } catch (NumberFormatException ignored) { }
+                String url = null;
+                JSONArray as = r.optJSONArray("assets");
+                if (as != null) for (int i = 0; i < as.length(); i++) {
+                    String u = as.getJSONObject(i).optString("browser_download_url");
+                    if (u.endsWith(".apk")) { url = u; break; }
+                }
+                if (code > myCode && url != null) {
+                    o.put("version", tag.startsWith("v") ? tag.substring(1) : tag);
+                    o.put("code", code);
+                    o.put("url", url);
+                } else o.put("none", true);
+            } catch (Exception e) {
+                try { o.put("none", true); o.put("msg", e.getMessage()); } catch (JSONException ignored) { }
+            }
+            Listener l = listener;
+            if (l != null) l.onEvent(o);
         });
     }
 
@@ -361,9 +420,10 @@ class FdroidInstaller {
             if (Build.VERSION.SDK_INT >= 33) confirm = intent.getParcelableExtra(Intent.EXTRA_INTENT, Intent.class);
             else confirm = intent.getParcelableExtra(Intent.EXTRA_INTENT);
             if (confirm == null) return;
-            pendingConfirm = confirm;
             Listener l = listener;
             boolean shown = l != null && l.launchUserAction(confirm);
+            // Gosterildiyse saklama; yoksa geri donunce ya da bildirime dokununca bir kez acilir.
+            pendingConfirm = shown ? null : confirm;
             Host h = host;
             if (h != null) {
                 if (shown) h.onConfirmHandled();
