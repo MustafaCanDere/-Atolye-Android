@@ -215,6 +215,16 @@ public class MainActivity extends Activity implements FdroidInstaller.Listener {
         }
 
         @JavascriptInterface
+        public String shizukuState() {
+            return isInstalled(ShizukuHelper.PKG) ? ShizukuHelper.state() : "none";
+        }
+
+        @JavascriptInterface
+        public void shizukuRequest() {
+            runOnUiThread(ShizukuHelper::request);
+        }
+
+        @JavascriptInterface
         public boolean busy() {
             return installer.isRunning();
         }

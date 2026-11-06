@@ -110,6 +110,7 @@ h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
     <h1>Atölye</h1>
     <div class="sub">Telefonun için kurulum merkezi. Seç, tek dokunuşla kur.</div>
     <div class="stats" id="stats"></div>
+    <div class="upd" id="shz"><div class="t"><b id="shzT"></b><small id="shzS"></small></div><button class="primary" id="shzBtn"></button></div>
     <div class="upd" id="upd"><div class="t"><b id="updT">Yeni sürüm var</b><small id="updS"></small></div><button class="primary" id="updBtn">Güncelle</button></div>
   </header>
   <div class="search" style="position:sticky">
@@ -326,6 +327,28 @@ function onSelfEvent(ev) {
 }
 $('updBtn').onclick = startUpdate;
 
+// ---------- Shizuku: onaysız kurulum ----------
+const SHZ = 'moe.shizuku.privileged.api';
+function renderShizuku() {
+  if (!N || !N.shizukuState) return;
+  const st = N.shizukuState();
+  const box = $('shz'), btn = $('shzBtn');
+  const set = (t, sub, b) => { $('shzT').textContent = t; $('shzS').textContent = sub; btn.textContent = b || ''; btn.style.display = b ? '' : 'none'; };
+  if (st === 'ok') set('⚡ Onaysız kurulum açık', 'Shizuku ile F-Droid uygulamaları sormadan kurulur');
+  else if (st === 'denied') set('⚡ Onaysız kurulum için izin ver', 'Shizuku çalışıyor, Atölye\'ye izin ver', 'İzin ver');
+  else if (st === 'notrunning') set('⚡ Shizuku kapalı', 'Shizuku\'yu aç ve Kablosuz hata ayıklama ile Başlat\'a bas', 'Shizuku\'yu aç');
+  else if (st === 'old') set('⚡ Shizuku eski', 'Shizuku\'yu güncelle', 'Güncelle');
+  else set('⚡ Her uygulamaya onay verme', 'Shizuku kurarsan Atölye uygulamaları sormadan kurar', 'Shizuku\'yu kur');
+  box.dataset.st = st;
+  box.classList.add('show');
+}
+$('shzBtn').onclick = () => {
+  const st = $('shz').dataset.st;
+  if (st === 'denied') { N.shizukuRequest(); setTimeout(renderShizuku, 1500); setTimeout(renderShizuku, 5000); }
+  else if (st === 'notrunning') { if (!N.openApp(SHZ)) N.openStore(SHZ); }
+  else N.openStore(SHZ);
+};
+
 window.__native = ev => {
   if (ev.type === 'update' || ev.pkg === 'com.atolye.app') { onSelfEvent(ev); return; }
   if (!Q) return;
@@ -356,6 +379,7 @@ function waitPkg(pkg) {
 }
 window.__resume = () => {
   refreshInstalled();
+  renderShizuku();
   if (Q) {
     Q.items.forEach(x => { if (x.state === 'sent' && installed.has(x.p.pkg)) x.state = 'done', x.note = 'Play Store\'dan kuruldu'; });
     renderQueue();
@@ -414,7 +438,7 @@ async function fdroidStep(x, allowed) {
   $('ovNow').textContent = x.p.name + ' · F-Droid';
   const ev = await waitPkg(x.p.pkg);
   $('ovDl').textContent = '';
-  if (ev.state === 'done') setItem(x, 'done', 'F-Droid\'den kuruldu');
+  if (ev.state === 'done') setItem(x, 'done', ev.msg || 'F-Droid\'den kuruldu');
   else if (ev.state === 'cancelled') setItem(x, 'skip', ev.msg || 'İptal edildi');
   else if (ev.state === 'notfound') { setItem(x, 'wait', 'F-Droid\'de yok, Play Store denenecek'); Q.playLater.push(x); }
   else setItem(x, 'fail', ev.msg || 'Kurulamadı');
@@ -492,6 +516,7 @@ fetch('catalog.json').then(r => r.json()).then(db => {
   if (cat !== 'all' && !DB.catName[cat]) cat = 'all';
   refreshInstalled(); renderPresets(); renderAll();
   if (N && N.checkUpdate) N.checkUpdate();
+  renderShizuku();
 }).catch(e => { $('list').innerHTML = '<div class="empty">Katalog yüklenemedi: ' + esc(e.message) + '</div>'; });
 })();
 </script>

@@ -260,6 +260,12 @@ class FdroidInstaller {
             status(pkg, "installing", null);
             Host h = host;
             if (h != null) h.onProgress(name, idx + "/" + total + " · kuruluyor", -1);
+            if (ShizukuHelper.ready()) {
+                // Shizuku: onay sormadan kur
+                String err = ShizukuHelper.install(apk, ctx.getPackageName());
+                if (err == null) { apk.delete(); status(pkg, "done", "Onaysız kuruldu (Shizuku)"); return; }
+                lastProblem = err; // olmadiysa normal onayli kuruluma dus
+            }
             synchronized (lock) { finalState = null; }
             commit(pkg, apk);
             awaitResult(pkg);

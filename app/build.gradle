@@ -45,4 +45,7 @@ android {
 dependencies {
     implementation "androidx.core:core:1.13.1"
     implementation "androidx.webkit:webkit:1.11.0"
+    // Onaysiz kurulum icin (istege bagli): https://github.com/RikkaApps/Shizuku-API
+    implementation "dev.rikka.shizuku:api:13.1.5"
+    implementation "dev.rikka.shizuku:provider:13.1.5"
 }
